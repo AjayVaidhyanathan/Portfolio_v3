@@ -151,15 +151,19 @@ export function fitText(el, width) {
   el.style.fontSize = (100 * width) / w + 'px';
 }
 
-/* Layout depends on viewport width everywhere, so rebuild cleanly on width changes */
+/* Layout only branches on the desktop/mobile breakpoint (see isDesktop() usage
+   throughout), so only rebuild when a resize actually crosses it. Comparing raw
+   innerWidth instead caused reload loops on mobile: scrolling hides/shows the
+   browser's address bar, which fires 'resize' and can nudge innerWidth by a
+   pixel or two even though the layout never changes. */
 export function reloadOnResize() {
-  let w = window.innerWidth;
+  let desktop = isDesktop();
   let timer;
   window.addEventListener('resize', () => {
     clearTimeout(timer);
     timer = setTimeout(() => {
-      if (window.innerWidth === w) return; // mobile URL bar show/hide only changes height
-      w = window.innerWidth;
+      if (isDesktop() === desktop) return;
+      desktop = isDesktop();
       window.location.reload();
     }, 250);
   });
