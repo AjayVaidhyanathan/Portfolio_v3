@@ -1,13 +1,5 @@
-import '@fontsource-variable/schibsted-grotesk';
-import '../shared/base.css';
-import '../shared/work.css';
-import '../shared/capabilities.css';
-import '../shared/chat.css';
-import '../shared/faq.css';
-import './main.css';
-
-import * as core from '../shared/core.js'; // namespace import: core.lenis is assigned after initScroll
 import { gsap, ScrollTrigger, SplitText, $, $$, isDesktop, reducedMotion, initScroll, initReveals, splitLines, fitText, reloadOnResize } from '../shared/core.js';
+import * as core from '../shared/core.js'; // namespace import: core.lenis is assigned after initScroll
 import { initFaq } from '../shared/faq.js';
 import { initWork } from '../shared/work.js';
 import { initCapabilities } from '../shared/capabilities.js';
@@ -22,16 +14,16 @@ const footerGL = { rise: 0 };
 // Start downloading the hero scene right away, in parallel with the fonts
 const heroScene = motion ? import('./three-hero.js') : null;
 
-async function boot() {
+/* Boots the whole page: fonts, scroll, every section's animations and the intro.
+   Called once from App's mount effect (see App.jsx) instead of running at module load,
+   since it needs the JSX to already be in the DOM before it can query for elements. */
+export async function boot() {
   await Promise.all([
     document.fonts.load('900 100px "Schibsted Grotesk Variable"'),
     document.fonts.load('450 16px "General Sans"'),
   ]);
   await document.fonts.ready;
   window.scrollTo(0, 0);
-
-  const year = $('[data-year]');
-  if (year) year.textContent = new Date().getFullYear();
 
   const gutter = parseFloat(getComputedStyle($('.wrap')).paddingLeft); // resolved --g (the var itself reads back as clamp())
   fitText($('.hero-wordmark'), window.innerWidth - gutter * 2);
@@ -319,5 +311,3 @@ function initRail() {
     btn.addEventListener('click', () => rail.scrollBy({ left: +btn.dataset.dir * $('.quote', rail).offsetWidth, behavior: 'smooth' }))
   );
 }
-
-boot();
