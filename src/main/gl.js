@@ -37,6 +37,22 @@ export function createStage(container, { fov = 35, z = 6 } = {}) {
   return { renderer, scene, camera, loop };
 }
 
+/* Free GPU resources for a stage that's scrolled out of relevance for good.
+   Mobile browsers reclaim tabs under GPU memory pressure, and several
+   never-disposed WebGLRenderers stacking up as the page is scrolled is a
+   common way to trigger that, so decorative stages that won't be revisited
+   (e.g. the hero blob, once you're deep into the page) get torn down. */
+export function disposeStage({ renderer, scene }) {
+  renderer.setAnimationLoop(null);
+  scene.traverse((obj) => {
+    obj.geometry?.dispose();
+    (Array.isArray(obj.material) ? obj.material : obj.material ? [obj.material] : []).forEach((m) => m.dispose());
+  });
+  renderer.dispose();
+  renderer.forceContextLoss();
+  renderer.domElement.remove();
+}
+
 // Ashima 3D simplex noise (MIT), shared by the shaders
 export const NOISE = /* glsl */ `
 vec3 mod289(vec3 x){return x-floor(x*(1.0/289.0))*289.0;}

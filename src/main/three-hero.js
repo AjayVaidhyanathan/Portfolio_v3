@@ -1,11 +1,13 @@
 import { Color, ShaderMaterial, Mesh, IcosahedronGeometry, Group, MeshBasicMaterial, SphereGeometry } from 'three';
-import { createStage, NOISE, pointer, easePointer } from './gl.js';
+import { createStage, disposeStage, NOISE, pointer, easePointer } from './gl.js';
 
 /* Hero: a slow-morphing ink blob with a yellow rim, sitting behind the portrait like a halo.
    It leans toward the cursor, gets agitated by fast mouse moves and is exposed as `state`
-   so GSAP can drive the intro and scroll. */
+   so GSAP can drive the intro and scroll. Returns { ready, dispose } so the caller can free
+   it once the hero is scrolled well out of view. */
 export function initHeroGL(container, state) {
-  const { scene, loop } = createStage(container, { z: 6 });
+  const stage = createStage(container, { z: 6 });
+  const { scene, loop } = stage;
 
   const uniforms = {
     uTime: { value: 0 },
@@ -67,7 +69,7 @@ export function initHeroGL(container, state) {
   }
   scene.add(dots);
 
-  return loop((time, dt) => {
+  const ready = loop((time, dt) => {
     easePointer(dt);
     uniforms.uTime.value = time;
     uniforms.uReveal.value = state.reveal;
@@ -86,4 +88,6 @@ export function initHeroGL(container, state) {
       d.position.set(Math.cos(a) * r * state.scale, Math.sin(a) * r * tilt * state.scale, Math.sin(a) * r * 0.5);
     });
   });
+
+  return { ready, dispose: () => disposeStage(stage) };
 }

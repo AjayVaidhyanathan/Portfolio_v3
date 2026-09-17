@@ -193,7 +193,12 @@ function initGL() {
   // The blob grows in once its shaders are compiled, so the intro never waits on the GPU
   heroScene
     .then((m) => m.initHeroGL($('.hero-gl'), heroGL))
-    .then(() => gsap.to(heroGL, { reveal: 1, spin: 0, duration: 2.2, ease: 'expo.out' }))
+    .then(({ ready, dispose }) => {
+      ready.then(() => gsap.to(heroGL, { reveal: 1, spin: 0, duration: 2.2, ease: 'expo.out' }));
+      // By the time About reaches the top, the hero (and its WebGL context) is long
+      // off-screen behind the pinned work track and won't be seen again on the way down.
+      ScrollTrigger.create({ trigger: '.about', start: 'top top', onEnter: (self) => { dispose(); self.kill(); } });
+    })
     .catch(fail);
   whenNear($('.footer'), () => import('./three-footer.js').then((m) => m.initFooterGL($('.footer-gl'), footerGL)).catch(fail));
 }
