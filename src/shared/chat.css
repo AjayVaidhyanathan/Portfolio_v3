@@ -1,0 +1,39 @@
+/* ============ CTA ============ */
+.cta { padding: 4vw 0 12vw; }
+.cta-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 7.6vw;
+  line-height: 0.93;
+  letter-spacing: -0.04em;
+  margin-bottom: 2.4vw;
+}
+.cta-soft { color: var(--paper); }
+
+.chat { display: flex; align-items: flex-end; gap: 0.8vw; margin-top: 2.4vw; }
+.chat-avatar { width: 3.4vw; height: 3.4vw; border-radius: 50%; background: var(--surface); object-fit: cover; }
+.chat-col { display: flex; flex-direction: column; align-items: flex-start; }
+.chat-row, .chat-typing { padding-top: 0.5vw; }
+.chat-bubble {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.8vw 1.1vw;
+  border-radius: 1.2vw 1.2vw 1.2vw 0.2vw;
+  background: var(--surface);
+  transform-origin: 0 100%;
+}
+.chat-bubble--btn { padding: 0.8vw 1.6vw; border-radius: 1.2vw 1.2vw 1.2vw 0.2vw; }
+.chat-typing .chat-bubble { gap: 0.3vw; padding: 1vw 1.1vw; }
+.chat-typing i { width: 0.45vw; height: 0.45vw; border-radius: 50%; background: var(--ink); opacity: 0.6; }
+
+@media (max-width: 767px) {
+  .cta { padding: 20px 0 72px; }
+  .cta-title { font-size: 15vw; margin-bottom: 20px; }
+  .chat { gap: 8px; margin-top: 24px; }
+  .chat-avatar { width: 40px; height: 40px; }
+  .chat-row, .chat-typing { padding-top: 6px; }
+  .chat-bubble { padding: 10px 14px; border-radius: 16px 16px 16px 3px; }
+  .chat-bubble--btn { padding: 10px 20px; }
+  .chat-typing .chat-bubble { gap: 4px; padding: 13px 14px; }
+  .chat-typing i { width: 6px; height: 6px; }
+}

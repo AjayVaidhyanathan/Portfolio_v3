@@ -1,0 +1,101 @@
+/* ============ WHAT YOU GET ============ */
+.capa { padding: 10vw 0 12vw; }
+.capa-inner { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.capa .h2-big { margin-bottom: 2.4vw; }
+
+.capa-text {
+  max-width: 62vw;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 4.1vw;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+}
+.char { display: inline-block; }
+
+.chip {
+  position: relative;
+  display: inline-block;
+  width: 5.6vw;
+  height: 3.3vw;
+  margin: 0 0.3vw;
+  vertical-align: -0.35vw;
+  text-align: left;
+  letter-spacing: 0;
+}
+.chip-card {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  width: 5.6vw;
+  min-height: 3.3vw;
+  padding: 0.75vw 0.9vw;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  font-family: var(--font-body);
+  font-weight: 450;
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  letter-spacing: 0;
+  cursor: default;
+  transition:
+    width 0.65s var(--ease-out),
+    padding 0.65s var(--ease-out),
+    box-shadow 0.65s var(--ease-out),
+    background-color 0.4s;
+}
+.chip.is-flip .chip-card { left: auto; right: 0; }
+.chip-top { display: flex; align-items: center; justify-content: space-between; gap: 0.6vw; }
+.chip-icon { width: 1.8vw; height: 1.8vw; color: var(--yellow); flex: none; transition: transform 0.65s var(--ease-out); transform-origin: 0 50%; }
+.chip-arrow {
+  width: 0;
+  height: 0;
+  border-left: 0.3vw solid transparent;
+  border-right: 0.3vw solid transparent;
+  border-top: 0.35vw solid var(--yellow);
+  transition: transform 0.5s var(--ease-out);
+}
+.chip-bottom {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.65s var(--ease-out);
+}
+.chip-bottom-inner {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4vw;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.chip-bottom-inner strong { padding-top: 1vw; font-family: var(--font-display); font-weight: 700; font-size: 1.4vw; line-height: 1.1; }
+.chip-bottom-inner span { font-size: var(--fs-small); opacity: 0.75; }
+
+.chip:hover .chip-card, .chip.is-open .chip-card {
+  z-index: 5;
+  width: 21vw;
+  padding: 1.2vw 1.3vw 1.3vw;
+  box-shadow: 0 1.6vw 3.2vw rgba(0, 0, 0, 0.14);
+}
+.chip:hover .chip-bottom, .chip.is-open .chip-bottom { grid-template-rows: 1fr; }
+.chip:hover .chip-bottom-inner, .chip.is-open .chip-bottom-inner { opacity: 1; transition-delay: 0.15s; }
+.chip:hover .chip-icon, .chip.is-open .chip-icon { transform: scale(1.35); }
+.chip:hover .chip-arrow, .chip.is-open .chip-arrow { transform: rotate(180deg); }
+.chip:hover { z-index: 5; }
+
+@media (max-width: 767px) {
+  .capa { padding: 72px 0; }
+  .capa .h2-big { margin-bottom: 20px; }
+  .capa-text { max-width: none; font-size: 30px; }
+  .chip { width: 50px; height: 32px; margin: 0 3px; vertical-align: -4px; }
+  .chip-card { width: 50px; min-height: 32px; padding: 7px 8px; border-radius: 10px; }
+  .chip-icon { width: 17px; height: 17px; }
+  .chip-arrow { border-left-width: 3px; border-right-width: 3px; border-top-width: 4px; }
+  .chip.is-open .chip-card, .chip:hover .chip-card { width: min(78vw, 300px); padding: 14px; }
+  .chip-bottom-inner strong { font-size: 18px; padding-top: 10px; }
+  .chip-bottom-inner { gap: 4px; }
+}

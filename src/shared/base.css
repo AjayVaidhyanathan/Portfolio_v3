@@ -1,0 +1,175 @@
+@font-face {
+  font-family: 'General Sans';
+  src: url('/fonts/GeneralSans-Variable.woff2') format('woff2');
+  font-weight: 200 700;
+  font-display: swap;
+}
+
+:root {
+  --bg: #e2dbd0;
+  --yellow: #ff6b2c;
+  --ink: #000;
+  --paper: #fbf9f5;
+  --surface: #f0ebe3;
+  --card: rgba(232, 223, 210, 0.8);
+  --card-border: rgba(255, 255, 255, 0.2);
+  --glass: rgba(226, 219, 208, 0.45);
+  --muted: #e8dfd2;
+  --dark: #1a1613;
+  --dark-card: rgba(29, 29, 29, 0.6);
+  --dark-item: rgba(57, 57, 57, 0.9);
+
+  --font-display: 'Schibsted Grotesk Variable', 'Schibsted Grotesk', Arial, sans-serif;
+  --font-body: 'General Sans', Arial, sans-serif;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Fluid desktop scale (matches a 1440px design at 1vw = 14.4px) */
+  --fs-body: 1.18vw;
+  --fs-small: 0.97vw;
+  --fs-label: 0.92vw;
+  --fs-h2: 4.36vw;
+  --gutter: 1.4vw;
+  --content-left: 21vw;
+  --radius: 0.83vw;
+  --radius-sm: 0.56vw;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { background: var(--bg); }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 450;
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+p, h1, h2, h3, h4 { margin: 0; }
+ul { margin: 0; padding: 0; list-style: none; }
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: -0.045em;
+  line-height: 0.74;
+  white-space: nowrap;
+  /* The intro splits letters into spans; disable kerning so both versions line up exactly */
+  font-kerning: none;
+}
+
+/* Hide the page until the intro takes over (desktop only, see v1.html) */
+.is-loading .sidebar,
+.is-loading .hero-stage { visibility: hidden; }
+
+/* ---------- Layout ---------- */
+.main { position: relative; z-index: 3; }
+.section { position: relative; }
+.container { margin-left: var(--content-left); margin-right: var(--gutter); }
+
+.section-head { display: flex; flex-direction: column; align-items: flex-start; }
+
+/* ---------- Type ---------- */
+.h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-h2);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  margin-bottom: 1.6vw;
+}
+.h2--white { color: var(--paper); }
+.h2 .soft { color: rgba(0, 0, 0, 0.55); }
+
+.h2-big {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 11.5vw;
+  line-height: 0.86;
+  letter-spacing: -0.045em;
+  text-align: center;
+}
+
+.section-lead { max-width: 28vw; }
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0.35vw 0.5vw;
+  margin-bottom: 1.1vw;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  border-radius: 5vw;
+  background: rgba(240, 235, 227, 0.4);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-label);
+  line-height: 1;
+  text-transform: uppercase;
+}
+.label--dark { color: var(--paper); border-color: rgba(255, 255, 255, 0.35); background: rgba(255, 255, 255, 0.06); }
+
+/* SplitText masks */
+.line-mask { overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7vw 1.4vw;
+  border-radius: var(--radius);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-body);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.btn--yellow { background: var(--yellow); color: var(--ink); }
+
+/* Text roll on hover: the label is duplicated with a text-shadow copy below */
+.roll { display: inline-flex; overflow: hidden; vertical-align: top; }
+.roll > span {
+  display: block;
+  text-shadow: 0 1.4em 0 currentColor;
+  transition: transform 0.5s var(--ease-out);
+}
+a:hover .roll > span, button:hover .roll > span, .roll:hover > span { transform: translateY(-1.4em); }
+.roll > span { line-height: 1.4em; height: 1.4em; }
+
+@media (max-width: 767px) {
+  :root {
+    --fs-body: 15px;
+    --fs-small: 13px;
+    --fs-label: 11px;
+    --fs-h2: 40px;
+    --gutter: 16px;
+    --content-left: 16px;
+    --radius: 10px;
+    --radius-sm: 8px;
+  }
+  .h2 { margin-bottom: 16px; }
+  .label { padding: 5px 8px; margin-bottom: 14px; }
+  .section-lead { max-width: none; }
+  .btn { padding: 10px 18px; }
+  .h2-big { font-size: 22vw; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}

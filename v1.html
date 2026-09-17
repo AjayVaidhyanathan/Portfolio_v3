@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="en" class="is-loading">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ajay Vaidhyanathan — Product Engineer</title>
+  <meta name="description" content="Ajay Vaidhyanathan builds digital products that merge design, engineering and long-term value." />
+  <link rel="preload" href="/fonts/GeneralSans-Variable.woff2" as="font" type="font/woff2" crossorigin />
+  <script>
+    // Skip the intro on small screens / reduced motion so nothing stays hidden.
+    if (innerWidth < 768 || matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.remove('is-loading');
+    history.scrollRestoration = 'manual';
+  </script>
+  <script type="module" src="/src/v1/main.js"></script>
+</head>
+<body>
+
+  <!-- ============ INTRO WORDMARK (desktop only) ============ -->
+  <div class="intro" aria-hidden="true">
+    <div class="intro-wordmark wordmark">
+      <span class="intro-mask"><span class="intro-letter">A</span></span><span class="intro-mask"><span class="intro-letter">J</span></span><span class="intro-mask"><span class="intro-letter">A</span></span><span class="intro-mask"><span class="intro-letter">Y</span></span>
+    </div>
+  </div>
+
+  <!-- ============ SIDEBAR (desktop) ============ -->
+  <aside class="sidebar" aria-label="Site navigation">
+    <div class="portrait" aria-hidden="true">
+      <img class="portrait-img" src="/img/portrait.svg" alt="" />
+    </div>
+
+    <!-- Top card: brand, socials, intro text -->
+    <div class="sb-card sb-top" data-theme-el>
+      <div class="sb-bg" data-scrub='{"from":{"scale":0.5,"opacity":0},"to":{"scale":1,"opacity":1},"start":"35% top","end":"39% top"}'></div>
+      <div class="sb-top-row">
+        <a href="#home" class="brand-pill" data-scrub='{"from":{"backgroundColor":"rgba(255,255,35,0)"},"to":{"backgroundColor":"#ffff23"},"start":"42% top","end":"44% top"}'>
+          <span class="brand wordmark" data-morph="brand" data-scrub='{"from":{"color":"#ffff23"},"to":{"color":"#000000"},"start":"42% top","end":"44% top"}'>AJAY</span>
+        </a>
+        <div class="sb-socials">
+          <a class="social" href="#" aria-label="X" data-scrub='{"from":{"scale":0.3,"opacity":0},"to":{"scale":1,"opacity":1},"start":"44% top","end":"46% top"}'>
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M17.8 3h3.1l-6.8 7.7 8 10.3h-6.2l-4.9-6.3L5.4 21H2.3l7.2-8.3L1.8 3h6.4l4.4 5.8L17.8 3Zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5Z"/></svg>
+          </a>
+          <a class="social" href="#" aria-label="LinkedIn" data-scrub='{"from":{"scale":0.3,"opacity":0},"to":{"scale":1,"opacity":1},"start":"46% top","end":"48% top"}'>
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11H3v-11Zm6.5 0h3.8v1.5h.06c.53-1 1.83-1.8 3.77-1.8 4.03 0 4.77 2.5 4.77 5.8v5.5h-4v-4.9c0-1.17-.02-2.68-1.63-2.68-1.64 0-1.89 1.28-1.89 2.6v4.98h-4v-11Z"/></svg>
+          </a>
+        </div>
+      </div>
+      <p class="sb-text" data-scrub-lines='{"start":"38% top","end":"42% top"}'>Working closely with founders and teams to ship products that merge design, engineering, and long-term value.</p>
+    </div>
+
+    <!-- Stats card -->
+    <div class="sb-card sb-stats" data-theme-el>
+      <div class="sb-bg" data-scrub='{"from":{"scale":0.5,"opacity":0},"to":{"scale":1,"opacity":1},"start":"34% top","end":"38% top"}'></div>
+      <div class="sb-stat">
+        <div class="stat-bg intro-blur" data-morph="stat1-bg"></div>
+        <div class="stat-icon intro-blur" data-morph="stat1-icon">
+          <svg viewBox="0 0 48 32"><path fill="currentColor" d="M0 0h13l5 18 5-18h10l5 18 5-18h5l-8 32H28l-5-17-5 17H8L0 0Z"/></svg>
+        </div>
+        <p class="stat-text intro-blur" data-morph="stat1-text" data-scrub='{"from":{"color":"#ffffff"},"to":{"color":"#000000"},"start":"20% top","end":"22% top"}'>40+<br />Projects</p>
+      </div>
+      <div class="sb-stat-sep" data-scrub='{"from":{"opacity":0},"to":{"opacity":1},"start":"39% top","end":"41% top"}'></div>
+      <div class="sb-stat">
+        <div class="stat-bg intro-blur" data-morph="stat2-bg"></div>
+        <div class="stat-icon stat-icon--num intro-blur" data-morph="stat2-icon">6+</div>
+        <p class="stat-text intro-blur" data-morph="stat2-text" data-scrub='{"from":{"color":"#ffffff"},"to":{"color":"#000000"},"start":"20% top","end":"22% top"}'>Years of<br />experience</p>
+      </div>
+    </div>
+
+    <!-- Menu card -->
+    <nav class="sb-card sb-menu" data-theme-el>
+      <div class="sb-bg" data-scrub='{"from":{"scale":0.5,"opacity":0},"to":{"scale":1,"opacity":1},"start":"31% top","end":"35% top"}'></div>
+      <ul class="menu">
+        <li class="menu-item" data-section="home">
+          <span class="menu-pill" data-scrub='{"from":{"scale":0.5,"opacity":0},"to":{"scale":1,"opacity":1},"start":"28% top","end":"30% top"}'></span>
+          <a class="menu-link" href="#home">
+            <svg class="menu-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M8 1 1 6.5V15h5v-4.5h4V15h5V6.5L8 1Z"/></svg>
+            <span class="menu-label roll" data-morph="link-home"><span class="intro-line">Home</span></span>
+          </a>
+        </li>
+        <li class="menu-item" data-section="about">
+          <span class="menu-pill" data-scrub='{"from":{"scale":0.5,"opacity":0},"to":{"scale":1,"opacity":1},"start":"29% top","end":"31% top"}'></span>
+          <a class="menu-link" href="#about">
+            <svg class="menu-icon" viewBox="0 0 16 16"><circle cx="8" cy="5" r="3.5" fill="currentColor"/><path fill="currentColor" d="M1.5 15c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5h-13Z"/></svg>
+            <span class="menu-label roll" data-morph="link-about"><span class="intro-line">About me</span></span>
+          </a>
+        </li>
+        <li class="menu-item" data-section="projects">
+          <span class="menu-pill" data-scrub='{"from":{"scale":0.5,"opacity":0},"to":{"scale":1,"opacity":1},"start":"30% top","end":"32% top"}'></span>
+          <a class="menu-link" href="#projects">
+            <svg class="menu-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M5 2h6v2h4v10H1V4h4V2Zm1.5 1.5V4h3v-.5h-3Z"/></svg>
+            <span class="menu-label roll" data-morph="link-projects"><span class="intro-line">Projects</span></span>
+          </a>
+        </li>
+        <li class="menu-item" data-section="overview">
+          <span class="menu-pill" data-scrub='{"from":{"scale":0.5,"opacity":0},"to":{"scale":1,"opacity":1},"start":"31% top","end":"33% top"}'></span>
+          <a class="menu-link" href="#overview">
+            <svg class="menu-icon" viewBox="0 0 16 16"><path fill="currentColor" d="m8 1 7 3.5L8 8 1 4.5 8 1Zm-5.2 5.4L8 9l5.2-2.6L15 7.3 8 10.8 1 7.3l1.8-.9Zm0 2.9L8 11.9l5.2-2.6 1.8.9L8 13.7 1 10.2l1.8-.9Z"/></svg>
+            <span class="menu-label roll" data-morph="link-overview"><span class="intro-line">What you get</span></span>
+          </a>
+        </li>
+        <li class="menu-item" data-section="services">
+          <span class="menu-pill" data-scrub='{"from":{"scale":0.5,"opacity":0},"to":{"scale":1,"opacity":1},"start":"32% top","end":"34% top"}'></span>
+          <a class="menu-link" href="#services">
+            <svg class="menu-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M9.5 1 3 9h4l-1 6 6.5-8h-4l1-6Z"/></svg>
+            <span class="menu-label roll" data-morph="link-services"><span class="intro-line">Services</span></span>
+          </a>
+        </li>
+        <li class="menu-item" data-section="clients">
+          <span class="menu-pill" data-scrub='{"from":{"scale":0.5,"opacity":0},"to":{"scale":1,"opacity":1},"start":"33% top","end":"35% top"}'></span>
+          <a class="menu-link" href="#clients">
+            <svg class="menu-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M2 2h12v9H6l-4 3.5V2Zm3 3v1.5h6V5H5Zm0 2.8v1.5h4V7.8H5Z"/></svg>
+            <span class="menu-label roll" data-morph="link-clients"><span class="intro-line">Clients</span></span>
+          </a>
+        </li>
+        <li class="menu-item" data-section="faq">
+          <span class="menu-pill" data-scrub='{"from":{"scale":0.5,"opacity":0},"to":{"scale":1,"opacity":1},"start":"34% top","end":"36% top"}'></span>
+          <a class="menu-link" href="#faq">
+            <svg class="menu-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1Zm-.1 9.6a1 1 0 1 0 0 2 1 1 0 0 0 0-2ZM8 3.8c-1.6 0-2.8 1-2.8 2.4h1.7c0-.5.5-.9 1.1-.9.6 0 1 .4 1 .9 0 .4-.2.6-.8 1-.7.4-1 .9-1 1.7v.3h1.6v-.2c0-.4.2-.6.8-1 .7-.4 1.2-1 1.2-1.9 0-1.4-1.2-2.3-2.8-2.3Z"/></svg>
+            <span class="menu-label roll" data-morph="link-faq"><span class="intro-line">FAQ</span></span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Tools marquee -->
+    <div class="sb-card sb-marquee" data-theme-el data-scrub='{"from":{"opacity":0},"to":{"opacity":1},"start":"30% top","end":"35% top"}'>
+      <div class="marquee">
+        <div class="marquee-track">
+          <span>React</span><span>Next.js</span><span>TypeScript</span><span>Node</span><span>Figma</span><span>GSAP</span><span>Postgres</span><span>AI</span>
+        </div>
+        <div class="marquee-track" aria-hidden="true">
+          <span>React</span><span>Next.js</span><span>TypeScript</span><span>Node</span><span>Figma</span><span>GSAP</span><span>Postgres</span><span>AI</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Email copy -->
+    <button class="sb-card sb-email" type="button" data-theme-el data-copy="hello@getlexora.de" data-scrub='{"from":{"opacity":0},"to":{"opacity":1},"start":"33% top","end":"38% top"}'>
+      <span class="email-text">hello@getlexora.de</span>
+      <span class="email-toast"><span class="email-toast-label">Copy to clipboard</span></span>
+      <svg class="email-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M5 1h9v10h-3v4H2V5h3V1Zm1.5 1.5v8h6v-8h-6Z"/></svg>
+    </button>
+
+    <!-- Buttons (morph from hero buttons) -->
+    <div class="sb-buttons">
+      <a class="btn btn--yellow sb-btn intro-pop" href="#contact" data-morph="cta"><span class="roll"><span>Book a Call</span></span></a>
+      <a class="btn btn--yellow sb-btn sb-btn--ghost intro-pop" href="#about" data-morph="about-btn"><span class="roll"><span>About Me</span></span></a>
+    </div>
+  </aside>
+
+  <!-- ============ MOBILE BAR ============ -->
+  <header class="mbar">
+    <a href="#home" class="mbar-brand wordmark">AJAY</a>
+    <div class="mbar-right">
+      <a class="btn btn--yellow mbar-cta" href="#contact">Book a Call</a>
+      <button class="mbar-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+    <nav class="mbar-menu">
+      <a href="#home">Home</a><a href="#about">About me</a><a href="#projects">Projects</a><a href="#overview">What you get</a><a href="#services">Services</a><a href="#clients">Clients</a><a href="#faq">FAQ</a>
+    </nav>
+  </header>
+
+  <main class="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home">
+      <div class="hero-track" aria-hidden="true"></div>
+      <div class="hero-stage">
+        <div class="hero-wordmark wordmark" data-ghost="brand" aria-hidden="true">AJAY</div>
+
+        <div class="hero-links" aria-hidden="true">
+          <div class="hero-links-group">
+            <span class="ghost-link" data-ghost="link-home">Home</span>
+            <i class="hero-sep" data-scrub='{"from":{"opacity":1,"y":0},"to":{"opacity":0,"y":"1vw"},"start":"top top","end":"5% top"}'></i>
+            <span class="ghost-link" data-ghost="link-about">About me</span>
+            <i class="hero-sep" data-scrub='{"from":{"opacity":1,"y":0},"to":{"opacity":0,"y":"1vw"},"start":"top top","end":"4% top"}'></i>
+            <span class="ghost-link" data-ghost="link-projects">Projects</span>
+          </div>
+          <div class="hero-links-group">
+            <span class="ghost-link" data-ghost="link-overview">What you get</span>
+            <i class="hero-sep" data-scrub='{"from":{"opacity":1,"y":0},"to":{"opacity":0,"y":"1vw"},"start":"top top","end":"3% top"}'></i>
+            <span class="ghost-link" data-ghost="link-services">Services</span>
+            <i class="hero-sep" data-scrub='{"from":{"opacity":1,"y":0},"to":{"opacity":0,"y":"1vw"},"start":"top top","end":"2% top"}'></i>
+            <span class="ghost-link" data-ghost="link-clients">Clients</span>
+            <i class="hero-sep" data-scrub='{"from":{"opacity":1,"y":0},"to":{"opacity":0,"y":"1vw"},"start":"top top","end":"1% top"}'></i>
+            <span class="ghost-link" data-ghost="link-faq">FAQ</span>
+          </div>
+        </div>
+
+        <p class="hero-side hero-side--left" data-scrub-lines='{"from":{"yPercent":0},"to":{"yPercent":-100},"start":"5% top","end":"10% top"}'>The product engineer. That’s Ajay.</p>
+
+        <div class="hero-center">
+          <h1 class="hero-title">Ideas,<br />Built<br />Differently.</h1>
+          <div class="hero-buttons">
+            <span class="btn btn--yellow ghost-btn" data-ghost="cta">Book a Call</span>
+            <span class="btn btn--yellow ghost-btn" data-ghost="about-btn">About Me</span>
+          </div>
+        </div>
+
+        <p class="hero-side hero-side--right" data-scrub-lines='{"from":{"yPercent":0},"to":{"yPercent":-100},"start":"5% top","end":"10% top"}'>Working closely with founders and teams to ship products that merge design, engineering, and long-term value.</p>
+
+        <div class="hero-cards">
+          <div class="hero-stat hero-stat--1">
+            <div class="ghost-box" data-ghost="stat1-bg"></div>
+            <div class="ghost-stat-icon" data-ghost="stat1-icon"></div>
+            <p class="ghost-stat-text" data-ghost="stat1-text">40+<br />Projects</p>
+          </div>
+          <div class="hero-stat hero-stat--2">
+            <div class="ghost-box" data-ghost="stat2-bg"></div>
+            <div class="ghost-stat-icon ghost-stat-icon--num" data-ghost="stat2-icon">6+</div>
+            <p class="ghost-stat-text" data-ghost="stat2-text">Years of<br />experience</p>
+          </div>
+          <div class="traits" data-scrub='{"from":{"scale":1,"opacity":1,"x":0,"y":0},"to":{"scale":0.3,"opacity":0,"x":"-25vw","y":"-5vw"},"start":"5% top","end":"20% top"}'>
+            <div class="traits-inner intro-blur">
+              <p><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0a8 8 0 1 0 8 8H8V0Z"/></svg>Creative</p>
+              <p><svg viewBox="0 0 16 16"><path fill="currentColor" d="M0 0h7v7H0zM9 0h7v7H9zM0 9h7v7H0zM9 9h7v7H9z"/></svg>Reliable</p>
+              <p><svg viewBox="0 0 16 16"><path fill="currentColor" d="M0 4l4 3 4-6 4 6 4-3-2 10H2L0 4Z"/></svg>Strategist</p>
+              <p><svg viewBox="0 0 16 16"><path fill="currentColor" d="M3 0h10v5l-3 3 3 3v5H3v-5l3-3-3-3V0Z"/></svg>Builder</p>
+              <p><svg viewBox="0 0 16 16"><path fill="currentColor" d="M6 0h4v6h6v4h-6v6H6v-6H0V6h6V0Z" transform="rotate(45 8 8)"/></svg>Efficient</p>
+            </div>
+          </div>
+        </div>
+
+        <img class="hero-mobile-img" src="/img/portrait.svg" alt="Portrait of Ajay Vaidhyanathan" />
+      </div>
+    </section>
+
+    <!-- ============ ABOUT / TIMELINE ============ -->
+    <section class="about section" id="about">
+      <div class="container">
+        <div class="section-head" data-reveal-scope>
+          <div class="label" data-reveal="label">Start small, grow big</div>
+          <h2 class="h2" data-reveal="lines">About Me (&amp;)<br />My Journey</h2>
+          <p class="section-lead" data-reveal="lines">Years ago I shipped my first side project. What happened after that is easier to show than explain.</p>
+        </div>
+
+        <div class="timeline">
+          <svg class="timeline-curve" aria-hidden="true"><path class="timeline-path" /></svg>
+
+          <article class="tl-card tl-card--right" style="--x:58%;--y:0%" data-side="right">
+            <div class="tl-point"><i class="tl-line"></i><i class="tl-dot"></i></div>
+            <div class="tl-body">
+              <p class="tl-year">’<span data-count="19">19</span></p>
+              <h3 class="tl-heading" data-reveal="lines">Curiosity turned into code</h3>
+              <p class="tl-text" data-reveal="lines" data-delay="0.4">A first website, a lot of broken layouts and the moment I realised I wanted to build things for a living.</p>
+              <div class="tl-foot">
+                <div class="tl-meta">
+                  <div class="tl-avatars" data-reveal="pop-small"><img src="/img/avatar-1.svg" alt="" /><img src="/img/avatar-2.svg" alt="" /></div>
+                  <p class="tl-meta-text" data-reveal="lines">@firststeps<br />7 years ago</p>
+                </div>
+                <button class="tl-more" type="button" data-reveal="fade">Read more</button>
+              </div>
+            </div>
+            <div class="tl-popup" role="dialog" aria-label="2019">
+              <div class="tl-popup-top"><span>2019</span><button class="tl-close" type="button" aria-label="Close"></button></div>
+              <h4>Curiosity turned into code</h4>
+              <p>Placeholder story. Tell the longer version here: what you built, what you learned and why it mattered for everything that came after.</p>
+            </div>
+          </article>
+
+          <article class="tl-card" style="--x:24%;--y:15.5%" data-side="left">
+            <div class="tl-point"><i class="tl-line"></i><i class="tl-dot"></i></div>
+            <div class="tl-body">
+              <p class="tl-year">’<span data-count="20">20</span></p>
+              <h3 class="tl-heading" data-reveal="lines">First real projects</h3>
+              <p class="tl-text" data-reveal="lines" data-delay="0.4">First real client. First real deadline. Learning that shipping is a skill of its own.</p>
+              <div class="tl-foot">
+                <div class="tl-meta">
+                  <div class="tl-avatars" data-reveal="pop-small"><img src="/img/avatar-2.svg" alt="" /><img src="/img/avatar-3.svg" alt="" /></div>
+                  <p class="tl-meta-text" data-reveal="lines">@freelance<br />6 years ago</p>
+                </div>
+                <button class="tl-more" type="button" data-reveal="fade">Read more</button>
+              </div>
+            </div>
+            <div class="tl-popup" role="dialog" aria-label="2020">
+              <div class="tl-popup-top"><span>2020</span><button class="tl-close" type="button" aria-label="Close"></button></div>
+              <h4>First real projects</h4>
+              <p>Placeholder story. Describe the first projects you delivered and the people who trusted you with them.</p>
+            </div>
+          </article>
+
+          <article class="tl-card" style="--x:0%;--y:31%" data-side="left">
+            <div class="tl-point"><i class="tl-line"></i><i class="tl-dot"></i></div>
+            <div class="tl-body">
+              <p class="tl-year">’<span data-count="22">22</span></p>
+              <h3 class="tl-heading" data-reveal="lines">Going deeper into product</h3>
+              <p class="tl-text" data-reveal="lines" data-delay="0.4">From features to systems. Design, data and architecture stopped being separate conversations.</p>
+              <div class="tl-foot">
+                <div class="tl-meta">
+                  <div class="tl-avatars" data-reveal="pop-small"><img src="/img/avatar-3.svg" alt="" /></div>
+                  <p class="tl-meta-text" data-reveal="lines">@product<br />4 years ago</p>
+                </div>
+                <button class="tl-more" type="button" data-reveal="fade">Read more</button>
+              </div>
+            </div>
+            <div class="tl-popup" role="dialog" aria-label="2022">
+              <div class="tl-popup-top"><span>2022</span><button class="tl-close" type="button" aria-label="Close"></button></div>
+              <h4>Going deeper into product</h4>
+              <p>Placeholder story. What changed in how you think about building products?</p>
+            </div>
+          </article>
+
+          <article class="tl-card tl-card--right" style="--x:52%;--y:47%" data-side="right">
+            <div class="tl-point"><i class="tl-line"></i><i class="tl-dot"></i></div>
+            <div class="tl-body">
+              <p class="tl-year">’<span data-count="23">23</span></p>
+              <h3 class="tl-heading" data-reveal="lines">Shipping for teams</h3>
+              <p class="tl-text" data-reveal="lines" data-delay="0.4">Working with founders and product teams, owning builds end to end from the first sketch to launch.</p>
+              <div class="tl-foot">
+                <div class="tl-meta">
+                  <div class="tl-avatars" data-reveal="pop-small"><img src="/img/avatar-1.svg" alt="" /><img src="/img/avatar-4.svg" alt="" /></div>
+                  <p class="tl-meta-text" data-reveal="lines">@teams<br />3 years ago</p>
+                </div>
+                <button class="tl-more" type="button" data-reveal="fade">Read more</button>
+              </div>
+            </div>
+            <div class="tl-popup" role="dialog" aria-label="2023">
+              <div class="tl-popup-top"><span>2023</span><button class="tl-close" type="button" aria-label="Close"></button></div>
+              <h4>Shipping for teams</h4>
+              <p>Placeholder story. Highlight a team or project you are proud of.</p>
+            </div>
+          </article>
+
+          <article class="tl-card" style="--x:8%;--y:63%" data-side="left">
+            <div class="tl-point"><i class="tl-line"></i><i class="tl-dot"></i></div>
+            <div class="tl-body">
+              <p class="tl-year">’<span data-count="24">24</span></p>
+              <h3 class="tl-heading" data-reveal="lines">Starting Lexora</h3>
+              <p class="tl-text" data-reveal="lines" data-delay="0.4">Taking everything I learned and putting it into a product of my own.</p>
+              <div class="tl-foot">
+                <div class="tl-meta">
+                  <div class="tl-avatars" data-reveal="pop-small"><img src="/img/avatar-4.svg" alt="" /><img src="/img/avatar-2.svg" alt="" /></div>
+                  <p class="tl-meta-text" data-reveal="lines">@lexora<br />2 years ago</p>
+                </div>
+                <button class="tl-more" type="button" data-reveal="fade">Read more</button>
+              </div>
+            </div>
+            <div class="tl-popup" role="dialog" aria-label="2024">
+              <div class="tl-popup-top"><span>2024</span><button class="tl-close" type="button" aria-label="Close"></button></div>
+              <h4>Starting Lexora</h4>
+              <p>Placeholder story. Why you started it, and what it is becoming.</p>
+            </div>
+          </article>
+
+          <article class="tl-card tl-card--right" style="--x:46%;--y:79%" data-side="right">
+            <div class="tl-point"><i class="tl-line"></i><i class="tl-dot"></i></div>
+            <div class="tl-body">
+              <p class="tl-year">’<span data-count="26">26</span></p>
+              <h3 class="tl-heading" data-reveal="lines">The journey continues</h3>
+              <p class="tl-text" data-reveal="lines" data-delay="0.4">Still obsessed. Now figuring out how AI fits into the way great products get built.</p>
+              <div class="tl-foot">
+                <div class="tl-meta">
+                  <div class="tl-avatars" data-reveal="pop-small"><img src="/img/avatar-me.svg" alt="" /><i class="tl-live"></i></div>
+                  <p class="tl-meta-text" data-reveal="lines">@ajay<br />2 hours ago</p>
+                </div>
+                <button class="tl-more" type="button" data-reveal="fade">Read more</button>
+              </div>
+            </div>
+            <div class="tl-popup" role="dialog" aria-label="2026">
+              <div class="tl-popup-top"><span>2026</span><button class="tl-close" type="button" aria-label="Close"></button></div>
+              <h4>The journey continues</h4>
+              <p>Placeholder story. What you are working on right now.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WORK (horizontal) ============ -->
+    <section class="work" id="projects" data-dark>
+      <div class="work-sticky">
+        <div class="work-inner">
+          <div class="work-head" data-reveal-scope>
+            <div>
+              <div class="label label--dark" data-reveal="label" data-once>Selected work</div>
+              <h2 class="h2 h2--white" data-reveal="lines" data-once>Designed to Ship,<br />Built to Perform</h2>
+            </div>
+            <p class="work-lead" data-reveal="lines" data-once>Over the years I’ve helped teams across different industries turn their ideas into products that look and work exactly how they imagined. Here’s a look at some of that work.</p>
+          </div>
+
+          <div class="work-track-wrap">
+            <div class="work-track">
+              <a class="work-card" href="#" style="--c1:#1f2a44;--c2:#3b5bdb">
+                <img class="work-bg" src="/img/work-1.svg" alt="" />
+                <div class="work-fg"><img src="/img/device-1.svg" alt="" /></div>
+                <div class="work-shade"></div>
+                <div class="work-content">
+                  <div class="work-tags"><span class="tag">01</span><span class="tag-group"><span class="tag">AI</span><span class="tag">Product</span><span class="tag">SaaS</span></span></div>
+                  <div class="work-bottom">
+                    <h3 class="work-title">Lexora</h3>
+                    <p class="work-desc">An AI workspace for legal teams. Placeholder description: the problem, your role and the outcome.</p>
+                    <span class="work-arrow" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M4 3h9v9h-2V6.4l-6.3 6.3-1.4-1.4L9.6 5H4V3Z"/></svg></span>
+                  </div>
+                </div>
+              </a>
+              <a class="work-card" href="#" style="--c1:#1d3b2a;--c2:#2f9e44">
+                <img class="work-bg" src="/img/work-2.svg" alt="" />
+                <div class="work-fg"><img src="/img/device-2.svg" alt="" /></div>
+                <div class="work-shade"></div>
+                <div class="work-content">
+                  <div class="work-tags"><span class="tag">02</span><span class="tag-group"><span class="tag">Web</span><span class="tag">CMS</span><span class="tag">Motion</span></span></div>
+                  <div class="work-bottom">
+                    <h3 class="work-title">Project Two</h3>
+                    <p class="work-desc">Placeholder description. One or two lines about what was built and why it matters.</p>
+                    <span class="work-arrow" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M4 3h9v9h-2V6.4l-6.3 6.3-1.4-1.4L9.6 5H4V3Z"/></svg></span>
+                  </div>
+                </div>
+              </a>
+              <a class="work-card" href="#" style="--c1:#3d2a1e;--c2:#e8590c">
+                <img class="work-bg" src="/img/work-3.svg" alt="" />
+                <div class="work-fg"><img src="/img/device-3.svg" alt="" /></div>
+                <div class="work-shade"></div>
+                <div class="work-content">
+                  <div class="work-tags"><span class="tag">03</span><span class="tag-group"><span class="tag">Mobile</span><span class="tag">API</span></span></div>
+                  <div class="work-bottom">
+                    <h3 class="work-title">Project Three</h3>
+                    <p class="work-desc">Placeholder description. One or two lines about what was built and why it matters.</p>
+                    <span class="work-arrow" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M4 3h9v9h-2V6.4l-6.3 6.3-1.4-1.4L9.6 5H4V3Z"/></svg></span>
+                  </div>
+                </div>
+              </a>
+              <a class="work-card" href="#" style="--c1:#2b1f3d;--c2:#7048e8">
+                <img class="work-bg" src="/img/work-4.svg" alt="" />
+                <div class="work-fg"><img src="/img/device-1.svg" alt="" /></div>
+                <div class="work-shade"></div>
+                <div class="work-content">
+                  <div class="work-tags"><span class="tag">04</span><span class="tag-group"><span class="tag">Dashboard</span><span class="tag">Data</span></span></div>
+                  <div class="work-bottom">
+                    <h3 class="work-title">Project Four</h3>
+                    <p class="work-desc">Placeholder description. One or two lines about what was built and why it matters.</p>
+                    <span class="work-arrow" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M4 3h9v9h-2V6.4l-6.3 6.3-1.4-1.4L9.6 5H4V3Z"/></svg></span>
+                  </div>
+                </div>
+              </a>
+              <a class="work-card" href="#" style="--c1:#1e3a3d;--c2:#15aabf">
+                <img class="work-bg" src="/img/work-5.svg" alt="" />
+                <div class="work-fg"><img src="/img/device-2.svg" alt="" /></div>
+                <div class="work-shade"></div>
+                <div class="work-content">
+                  <div class="work-tags"><span class="tag">05</span><span class="tag-group"><span class="tag">E-commerce</span><span class="tag">SEO</span></span></div>
+                  <div class="work-bottom">
+                    <h3 class="work-title">Project Five</h3>
+                    <p class="work-desc">Placeholder description. One or two lines about what was built and why it matters.</p>
+                    <span class="work-arrow" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M4 3h9v9h-2V6.4l-6.3 6.3-1.4-1.4L9.6 5H4V3Z"/></svg></span>
+                  </div>
+                </div>
+              </a>
+              <a class="work-card" href="#" style="--c1:#3d1e2c;--c2:#d6336c">
+                <img class="work-bg" src="/img/work-6.svg" alt="" />
+                <div class="work-fg"><img src="/img/device-3.svg" alt="" /></div>
+                <div class="work-shade"></div>
+                <div class="work-content">
+                  <div class="work-tags"><span class="tag">06</span><span class="tag-group"><span class="tag">Brand</span><span class="tag">Web</span></span></div>
+                  <div class="work-bottom">
+                    <h3 class="work-title">Project Six</h3>
+                    <p class="work-desc">Placeholder description. One or two lines about what was built and why it matters.</p>
+                    <span class="work-arrow" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M4 3h9v9h-2V6.4l-6.3 6.3-1.4-1.4L9.6 5H4V3Z"/></svg></span>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WHAT YOU GET ============ -->
+    <section class="capa section" id="overview">
+      <div class="container capa-inner">
+        <h2 class="h2-big" data-reveal="lines" data-start="top 85%">What<br />You Get?</h2>
+        <div class="label" data-reveal="label" data-trigger=".capa-text" data-start="top 100%">Capabilities overview</div>
+
+        <p class="capa-text">
+          Strategy, precision, and
+          <span class="chip" data-chip-start="top 80%">
+            <span class="chip-card">
+              <span class="chip-top"><svg class="chip-icon" viewBox="0 0 24 24"><path fill="currentColor" d="m8.6 6.3 1.4 1.4L5.7 12l4.3 4.3-1.4 1.4L2.9 12l5.7-5.7Zm6.8 0L21.1 12l-5.7 5.7-1.4-1.4 4.3-4.3-4.3-4.3 1.4-1.4Z"/></svg><i class="chip-arrow"></i></span>
+              <span class="chip-bottom"><span class="chip-bottom-inner"><strong>Product Engineering</strong><span>Fast, scalable web apps with clean architecture your team can keep building on.</span></span></span>
+            </span>
+          </span>
+          engineering combined - turning
+          <span class="chip" data-chip-start="top 63%">
+            <span class="chip-card">
+              <span class="chip-top"><svg class="chip-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M3 13h4v8H3v-8Zm7-6h4v14h-4V7Zm7-4h4v18h-4V3Z"/></svg><i class="chip-arrow"></i></span>
+              <span class="chip-bottom"><span class="chip-bottom-inner"><strong>Growth-Ready Setup</strong><span>Solid structure, speed and analytics so the product can grow with you.</span></span></span>
+            </span>
+          </span>
+          your ideas into a powerful digital
+          <span class="chip" data-chip-start="top 47%">
+            <span class="chip-card">
+              <span class="chip-top"><svg class="chip-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M10.3 2h3.4l.5 2.6 1.6.7 2.2-1.5 2.4 2.4-1.5 2.2.7 1.6 2.6.5v3.4l-2.6.5-.7 1.6 1.5 2.2-2.4 2.4-2.2-1.5-1.6.7-.5 2.6h-3.4l-.5-2.6-1.6-.7-2.2 1.5-2.4-2.4 1.5-2.2-.7-1.6L2 13.7v-3.4l2.6-.5.7-1.6-1.5-2.2 2.4-2.4 2.2 1.5 1.6-.7.3-2.4ZM12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"/></svg><i class="chip-arrow"></i></span>
+              <span class="chip-bottom"><span class="chip-bottom-inner"><strong>Custom Integrations</strong><span>APIs, AI models and third-party tools wired together into one smooth workflow.</span></span></span>
+            </span>
+          </span>
+          product
+          <span class="chip" data-chip-start="top 39%">
+            <span class="chip-card">
+              <span class="chip-top"><svg class="chip-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2c.6 4.8 3.2 7.4 8 8-4.8.6-7.4 3.2-8 8-.6-4.8-3.2-7.4-8-8 4.8-.6 7.4-3.2 8-8Zm6 12c.3 2.4 1.6 3.7 4 4-2.4.3-3.7 1.6-4 4-.3-2.4-1.6-3.7-4-4 2.4-.3 3.7-1.6 4-4Z"/></svg><i class="chip-arrow"></i></span>
+              <span class="chip-bottom"><span class="chip-bottom-inner"><strong>Interaction &amp; Motion</strong><span>Smooth, purposeful animation that makes the product feel alive and easy to use.</span></span></span>
+            </span>
+          </span>
+          that feels effortless.
+          <span class="chip" data-chip-start="top 25%">
+            <span class="chip-card">
+              <span class="chip-top"><svg class="chip-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3a10 10 0 0 1 10 10c0 2.4-.8 4.6-2.3 6.3l-1.5-1.3A8 8 0 1 0 4 13c0 1.9.7 3.7 1.8 5l-1.5 1.3A10 10 0 0 1 12 3Zm4.2 4.4 1.4 1.4-4.2 4.2a1.5 1.5 0 1 1-1.4-1.4l4.2-4.2Z"/></svg><i class="chip-arrow"></i></span>
+              <span class="chip-bottom"><span class="chip-bottom-inner"><strong>Performance &amp; Quality</strong><span>Faster, cleaner, tested and built to last with solid technical foundations.</span></span></span>
+            </span>
+          </span>
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ SERVICES ============ -->
+    <section class="services section" id="services">
+      <div class="container">
+        <div class="section-head" data-reveal-scope>
+          <div class="label" data-reveal="label">Services</div>
+          <h2 class="h2" data-reveal="lines">Solutions<br />That Deliver</h2>
+          <p class="section-lead" data-reveal="lines">Same quality, same attention to detail. The only difference is the scope of what we build together.</p>
+        </div>
+
+        <div class="service-grid">
+          <article class="service-card is-featured" data-reveal="pop">
+            <div class="service-top">
+              <div class="service-head"><span class="service-icon"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2 3 7v10l9 5 9-5V7l-9-5Zm0 2.3L18.8 8 12 11.7 5.2 8 12 4.3Z"/></svg></span><h3>Ongoing Support</h3></div>
+              <p class="service-price">€3,000 <span class="service-unit">/ 30 hours</span></p>
+              <p class="service-desc">Your dedicated product engineer, 30 hours a month. Whatever your product needs, handled.</p>
+              <ul class="service-list">
+                <li>New features, pages and flows</li>
+                <li>Iterations based on user feedback</li>
+                <li>Maintenance, bug fixes and updates</li>
+                <li>Performance and quality improvements</li>
+                <li>Unused hours roll over (up to 3 months)</li>
+              </ul>
+            </div>
+            <p class="service-note"><i class="service-note-icon">i</i>For teams that need continuous growth and long-term collaboration.</p>
+          </article>
+
+          <article class="service-card" data-reveal="pop" data-delay="0.1">
+            <div class="service-top">
+              <div class="service-head"><span class="service-icon"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg></span><h3>Starter Build</h3></div>
+              <p class="service-price">€5,000</p>
+              <p class="service-desc">A clean MVP or website, ready to launch in a few weeks. Perfect for getting a solid start.</p>
+              <ul class="service-list">
+                <li>Up to 6 screens or pages</li>
+                <li>Design system setup</li>
+                <li>Mid-level animations and interactions</li>
+                <li>Analytics and SEO basics</li>
+                <li>Launch within two to three weeks</li>
+                <li>Handover and documentation</li>
+              </ul>
+            </div>
+            <p class="service-note"><i class="service-note-icon">i</i>For new products or relaunches that need a fast, clean start.</p>
+          </article>
+
+          <article class="service-card" data-reveal="pop" data-delay="0.2">
+            <div class="service-top">
+              <div class="service-head"><span class="service-icon"><svg viewBox="0 0 24 24"><path fill="currentColor" d="m2 7 5 4 5-7 5 7 5-4-2 13H4L2 7Z"/></svg></span><h3>Custom Project</h3></div>
+              <p class="service-price">Book a Call</p>
+              <p class="service-desc">High-end product development for complex projects. Every scope is different, so every project starts with a conversation.</p>
+              <ul class="service-list">
+                <li>Advanced interaction and animation systems</li>
+                <li>Scalable architecture and data models</li>
+                <li>AI features and integrations</li>
+                <li>API-driven and multi-platform builds</li>
+                <li>30 days post-launch support included</li>
+              </ul>
+            </div>
+            <p class="service-note"><i class="service-note-icon">i</i>For complex projects that go beyond the basics and need a tailored approach.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="cta section" id="contact">
+      <div class="container" data-reveal-scope>
+        <h2 class="cta-title" data-reveal="lines" data-once>Transform Your<br />Product<br /><span class="cta-soft">Experience</span><br /><span class="cta-soft">Journey</span></h2>
+        <p class="section-lead" data-reveal="lines" data-once data-start="top 65%">Every product has room to grow. You get a clear view of what works, what holds you back and how to move toward a setup that feels faster, lighter and easier to manage.</p>
+
+        <div class="chat">
+          <img class="chat-avatar" src="/img/avatar-me.svg" alt="" />
+          <div class="chat-col">
+            <div class="chat-row chat-row--msg"><div class="chat-bubble"><p class="chat-text">Have something in mind?</p></div></div>
+            <div class="chat-row chat-row--btn"><a class="chat-bubble chat-bubble--btn btn btn--yellow" href="mailto:hello@getlexora.de"><span class="roll"><span>Let’s Talk</span></span></a></div>
+            <div class="chat-typing"><div class="chat-bubble"><i></i><i></i><i></i></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TESTIMONIALS ============ -->
+    <section class="testimonials section" id="clients">
+      <div class="container">
+        <div class="testi-head" data-reveal-scope>
+          <div>
+            <div class="label" data-reveal="label" data-once>Testimonials</div>
+            <h2 class="h2" data-reveal="lines" data-once>From People<br />I’ve Worked with</h2>
+          </div>
+          <div class="testi-pagination"></div>
+        </div>
+
+        <div class="swiper testi-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <article class="testi-card">
+                <div class="testi-top"><h3>Trusted<br />long-term collaborator.</h3><span class="quote">”</span></div>
+                <p>Placeholder testimonial. A short quote about working together: communication, speed, quality and the result for the team.</p>
+                <div class="testi-person"><img src="/img/avatar-1.svg" alt="" /><div><strong>Client Name</strong><span>Role, Company</span></div></div>
+              </article>
+            </div>
+            <div class="swiper-slide">
+              <article class="testi-card">
+                <div class="testi-top"><h3>Thinks through<br />the entire product.</h3><span class="quote">”</span></div>
+                <p>Placeholder testimonial. What stood out: thinking beyond the ticket, caring about the user and shipping without compromises.</p>
+                <div class="testi-person"><img src="/img/avatar-2.svg" alt="" /><div><strong>Client Name</strong><span>Role, Company</span></div></div>
+              </article>
+            </div>
+            <div class="swiper-slide">
+              <article class="testi-card">
+                <div class="testi-top"><h3>Reliable, sharp<br />and easy to work with.</h3><span class="quote">”</span></div>
+                <p>Placeholder testimonial. A few words about reliability, ownership and how the collaboration felt day to day.</p>
+                <div class="testi-person"><img src="/img/avatar-3.svg" alt="" /><div><strong>Client Name</strong><span>Role, Company</span></div></div>
+              </article>
+            </div>
+            <div class="swiper-slide">
+              <article class="testi-card">
+                <div class="testi-top"><h3>Clear ownership<br />from day one.</h3><span class="quote">”</span></div>
+                <p>Placeholder testimonial. How the project was led, the technical decisions taken and the outcome it delivered.</p>
+                <div class="testi-person"><img src="/img/avatar-4.svg" alt="" /><div><strong>Client Name</strong><span>Role, Company</span></div></div>
+              </article>
+            </div>
+            <div class="swiper-slide">
+              <article class="testi-card">
+                <div class="testi-top"><h3>Detail-obsessed<br />in the best way.</h3><span class="quote">”</span></div>
+                <p>Placeholder testimonial. Mention the polish, the motion and the small details that made the difference.</p>
+                <div class="testi-person"><img src="/img/avatar-2.svg" alt="" /><div><strong>Client Name</strong><span>Role, Company</span></div></div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="drag-cursor" aria-hidden="true">
+        <svg class="drag-arrow drag-arrow--left" viewBox="0 0 10 10"><path fill="currentColor" d="M1.5 4.1c-.7.4-.7 1.4 0 1.8L6 8.5c.7.4 1.5-.1 1.5-.9V2.4c0-.8-.8-1.3-1.5-.9L1.5 4.1Z"/></svg>
+        <span class="drag-circle">drag</span>
+        <svg class="drag-arrow drag-arrow--right" viewBox="0 0 10 10"><path fill="currentColor" d="M8.5 5.9c.7-.4.7-1.4 0-1.8L4 1.5c-.7-.4-1.5.1-1.5.9v5.2c0 .8.8 1.3 1.5.9l4.5-2.6Z"/></svg>
+      </div>
+    </section>
+
+    <!-- ============ FOOTER / FAQ ============ -->
+    <footer class="footer section" id="faq">
+      <div class="container">
+        <div class="footer-logo" aria-hidden="true">
+          <svg class="footer-wordmark">
+            <defs><clipPath id="wordmark-clip"><text class="wm-text" x="0" y="0">AJAY</text></clipPath></defs>
+            <text class="wm-text" x="0" y="0" fill="currentColor">AJAY</text>
+            <g class="trail" clip-path="url(#wordmark-clip)"></g>
+          </svg>
+        </div>
+
+        <div class="section-head" data-reveal-scope>
+          <div class="label" data-reveal="label">FAQ</div>
+          <h2 class="h2" data-reveal="lines">Got <span class="soft">any</span><br />questions?</h2>
+        </div>
+
+        <div class="faq-grid">
+          <div class="faq-col">
+            <details class="faq"><summary>What do you usually build?<i class="faq-plus"></i></summary><div class="faq-body"><div><p>Web apps, SaaS products, marketing sites and internal tools. Placeholder answer: describe the kind of projects you enjoy most.</p></div></div></details>
+            <details class="faq"><summary>Already have a product that needs work?<i class="faq-plus"></i></summary><div class="faq-body"><div><p>That’s a big part of what I do. Whether it needs a structural cleanup, new features or better performance, we start with an honest review.</p></div></div></details>
+            <details class="faq"><summary>What’s the process from start to launch?<i class="faq-plus"></i></summary><div class="faq-body"><div><p>It starts with a conversation about goals, timeline and scope. Then planning, design alignment, build in small iterations and a smooth launch.</p></div></div></details>
+            <details class="faq"><summary>Do you work under NDA?<i class="faq-plus"></i></summary><div class="faq-body"><div><p>Yes. Confidentiality is standard and I’m happy to sign an NDA before we talk details.</p></div></div></details>
+          </div>
+          <div class="faq-col">
+            <details class="faq"><summary>Do you handle design, or only development?<i class="faq-plus"></i></summary><div class="faq-body"><div><p>Engineering is my core strength, but I care a lot about design and work closely with designers, or take the design lead on smaller scopes.</p></div></div></details>
+            <details class="faq"><summary>What does ongoing support look like?<i class="faq-plus"></i></summary><div class="faq-body"><div><p>You get a dedicated block of hours each month for new features, improvements and maintenance, with clear reporting.</p></div></div></details>
+            <details class="faq"><summary>How do you handle revisions and feedback?<i class="faq-plus"></i></summary><div class="faq-body"><div><p>Revisions are built into the process, not an afterthought. Short feedback loops keep everyone aligned.</p></div></div></details>
+            <details class="faq"><summary>Not sure which plan fits your project?<i class="faq-plus"></i></summary><div class="faq-body"><div><p>No stress. Reach out at <a href="mailto:hello@getlexora.de">hello@getlexora.de</a> and tell me what you have in mind. I’ll help you figure out the best fit.</p></div></div></details>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <span>© <span data-year>2026</span> Ajay Vaidhyanathan</span>
+          <a href="mailto:hello@getlexora.de">hello@getlexora.de</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>

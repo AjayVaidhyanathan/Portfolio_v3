@@ -1,0 +1,199 @@
+/* ============ HERO ============ */
+.hero {
+  position: relative;
+  height: max(86vw, 100vh);
+  pointer-events: none; /* clicks fall through to the sidebar pieces sitting in the hero */
+}
+/* Invisible scroll ruler: every hero scroll animation is timed against it */
+.hero-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 152vw;
+  pointer-events: none;
+}
+
+.hero-stage {
+  position: relative;
+  height: max(100vh, 50.6vw);
+  pointer-events: none;
+}
+.hero-stage a, .hero-stage button { pointer-events: auto; }
+
+/* Ghosts: invisible placeholders marking where sidebar elements start */
+[data-ghost] { visibility: hidden; }
+
+.hero-wordmark {
+  position: absolute;
+  left: 2.8vw;
+  top: 2.8vw;
+  color: var(--yellow);
+  /* font-size is fitted to 94.4vw by JS */
+  font-size: 30vw;
+}
+
+.hero-links {
+  position: absolute;
+  top: 29.3vw;
+  left: 2.8vw;
+  right: 2.8vw;
+  display: flex;
+  justify-content: space-between;
+}
+.hero-links-group { display: flex; align-items: center; gap: 1.1vw; }
+.ghost-link {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.2vw;
+  line-height: 1.4;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.hero-sep { display: block; width: 1px; height: 0.8vw; background: var(--ink); }
+
+.hero-side {
+  position: absolute;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--fs-body);
+  line-height: 1.6;
+}
+.hero-side--left { left: 3.5vw; top: 44vw; width: 11vw; }
+.hero-side--right { left: 71.9vw; top: 42.2vw; width: 24.6vw; }
+
+.hero-center {
+  position: absolute;
+  left: 35.5vw;
+  top: 26.5vw;
+  width: 29vw;
+  z-index: 2;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 5.3vw;
+  line-height: 1.03;
+  letter-spacing: -0.03em;
+  color: var(--paper);
+}
+.hero-buttons { display: flex; gap: 0.8vw; margin-top: 1.6vw; margin-left: 4.3vw; }
+.ghost-btn { width: 10.2vw; }
+.ghost-btn + .ghost-btn { width: 9.4vw; }
+
+/* Stat ghosts */
+.hero-stat { position: absolute; }
+.ghost-box { position: absolute; inset: 0; border-radius: var(--radius-sm); }
+.hero-stat--1 { left: 17.9vw; top: 29.9vw; width: 14.9vw; height: 7.3vw; }
+.hero-stat--1 .ghost-stat-icon { position: absolute; left: 1.7vw; top: 1.85vw; width: 5.4vw; height: 3.6vw; }
+.hero-stat--1 .ghost-stat-text { position: absolute; left: 8.2vw; top: 2.3vw; }
+.hero-stat--2 { left: 20.9vw; top: 38.6vw; width: 9.8vw; height: 10.6vw; }
+.hero-stat--2 .ghost-stat-icon { position: absolute; left: 2.2vw; top: 1.6vw; font-size: 5.1vw; }
+.hero-stat--2 .ghost-stat-text { position: absolute; left: 50%; top: 6.9vw; transform: translateX(-50%); text-align: center; white-space: nowrap; }
+.ghost-stat-icon--num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+}
+.ghost-stat-text {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.1vw;
+  line-height: 1.1;
+}
+
+/* Traits card */
+.traits {
+  position: absolute;
+  left: 66.1vw;
+  top: 27.9vw;
+  width: 11.5vw;
+  z-index: 1;
+  transform-origin: 0 0;
+}
+.traits-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75vw;
+  padding: 1.6vw 1.7vw;
+  border-radius: var(--radius-sm);
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05vw;
+  line-height: 1.3;
+}
+.traits-inner p { display: flex; align-items: center; gap: 0.6vw; }
+.traits-inner svg { width: 0.9vw; height: 0.9vw; color: var(--yellow); flex: none; }
+
+.hero-mobile-img { display: none; }
+
+/* Morphing sidebar pieces get their hero look from these inline-able states */
+.stat-bg { background: var(--glass); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); }
+
+@media (max-width: 767px) {
+  .hero { height: auto; }
+  .hero-track { display: none; }
+  .hero-stage {
+    height: auto;
+    min-height: 100svh;
+    padding: 70px 16px 24px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  [data-ghost] { visibility: visible; }
+  .hero-wordmark {
+    position: relative;
+    left: auto;
+    top: auto;
+    font-size: 36vw;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .hero-links, .hero-side, .hero-buttons { display: none; }
+  .hero-center {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 24px;
+    top: auto;
+    width: auto;
+    z-index: 3;
+  }
+  .hero-title { font-size: 13vw; }
+  .hero-mobile-img {
+    display: block;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    height: 82%;
+    width: auto;
+    max-width: none;
+    transform: translateX(-50%);
+  }
+  .hero-cards { position: absolute; inset: 0; z-index: 2; }
+  .hero-stat--1 { display: none; }
+  .hero-stat--2 {
+    left: auto;
+    right: 16px;
+    top: 50%;
+    width: 110px;
+    height: 110px;
+    border-radius: 10px;
+    background: var(--glass);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    color: #fff;
+  }
+  .hero-stat--2 .ghost-stat-icon { left: 0; right: 0; top: 16px; font-size: 52px; color: var(--yellow); text-align: center; }
+  .hero-stat--2 .ghost-stat-text { top: 68px; font-size: 13px; }
+  .traits { left: 16px; top: 42%; width: 130px; }
+  .traits-inner { padding: 14px 16px; gap: 7px; font-size: 13px; border-radius: 10px; }
+  .traits-inner p { gap: 7px; }
+  .traits-inner svg { width: 11px; height: 11px; }
+}
