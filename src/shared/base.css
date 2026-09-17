@@ -38,7 +38,10 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { background: var(--bg); }
+/* Contain vertical overscroll so rubber-banding at the top/bottom of the
+   Lenis-driven scroll can't chain into the browser's own pull-to-refresh
+   or navigation gestures on mobile. */
+html { background: var(--bg); overscroll-behavior-y: contain; }
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-stopped { overflow: hidden; }
