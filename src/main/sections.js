@@ -24,11 +24,21 @@ export function initAbout() {
     end: 'bottom 60%',
     onUpdate: (self) => (gl.progress = self.progress),
   });
-  if (isDesktop()) whenNear($('.about'), () =>
-    import('./three-journey.js')
-      .then((m) => m.initJourneyGL($('.about-gl'), steps.length, gl))
-      .catch((err) => console.warn('WebGL disabled:', err))
+  whenNear($('.about'), () =>
+    (isDesktop()
+      ? import('./three-journey.js').then((m) => m.initJourneyGL($('.about-gl'), steps.length, gl))
+      : import('./orb.js').then((m) => m.initJourneyOrb($('.about-gl'), gl))
+    ).catch((err) => console.warn('WebGL disabled:', err))
   );
+
+  // Touch has no hover, so each step carries its own image instead of the cursor preview
+  if (!finePointer()) {
+    steps.forEach((step) => {
+      const img = Object.assign(document.createElement('img'), { src: step.dataset.img, alt: '', loading: 'lazy' });
+      img.className = 'step-img';
+      step.append(img);
+    });
+  }
 
   // Chapter counter rolls to the step in view
   const setChapter = (i) => {

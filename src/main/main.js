@@ -18,10 +18,9 @@ const finePointer = matchMedia('(pointer: fine)').matches;
 // Plain objects GSAP animates; the WebGL scenes read them once their chunk has loaded
 const heroGL = { reveal: 0, y: 0, scale: 1, spin: 0 };
 const footerGL = { rise: 0 };
-// three.js is 136KB gzip of decoration, so phones get a CSS gradient instead (see .hero-gl).
-// Start downloading the hero scene right away, in parallel with the fonts.
-const webgl = motion && isDesktop();
-const heroScene = webgl ? import('./three-hero.js') : null;
+// Same orb either way, but three.js is 136KB gzip: phones get the shader-only version
+// in orb.js, which exports the same { ready, dispose }. Downloads alongside the fonts.
+const heroScene = !motion ? null : isDesktop() ? import('./three-hero.js') : import('./orb.js');
 
 async function boot() {
   // Both fonts are preloaded from the HTML, but a slow connection shouldn't hold the
@@ -76,7 +75,7 @@ async function boot() {
   ScrollTrigger.refresh();
   if (motion) {
     playIntro();
-    if (webgl) initGL();
+    initGL();
   } else document.documentElement.classList.remove('is-loading');
 
   reloadOnResize();
@@ -226,7 +225,7 @@ function initGL() {
       ScrollTrigger.create({ trigger: '.about', start: 'top top', onEnter: (self) => { dispose(); self.kill(); } });
     })
     .catch(fail);
-  whenNear($('.footer'), () => import('./three-footer.js').then((m) => m.initFooterGL($('.footer-gl'), footerGL)).catch(fail));
+  if (isDesktop()) whenNear($('.footer'), () => import('./three-footer.js').then((m) => m.initFooterGL($('.footer-gl'), footerGL)).catch(fail));
 }
 
 /* ---------- Headings: characters rise and untwist, line by line ---------- */

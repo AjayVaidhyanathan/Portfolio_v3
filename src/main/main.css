@@ -214,7 +214,7 @@ body { font-size: var(--fs-lead); }
 
 .hero-gl, .footer-gl { position: absolute; inset: 0; pointer-events: none; }
 .hero-gl { z-index: 2; }
-.hero-gl canvas, .footer-gl canvas { display: block; width: 100%; height: 100%; }
+.hero-gl canvas, .footer-gl canvas, .about-gl canvas { position: relative; z-index: 1; display: block; width: 100%; height: 100%; }
 
 /* ============ WORK (horizontal track, see shared/work.css) ============ */
 .work { z-index: 5; margin-top: -2px; }
@@ -315,6 +315,7 @@ body { font-size: var(--fs-lead); }
   transition: background-color 0.4s, border-color 0.4s, transform 0.6s var(--ease-out);
 }
 .step.is-on::before { background: var(--yellow); border-color: var(--ink); transform: scale(1.2); }
+.step-img { display: none; } /* mobile only: the desktop preview follows the cursor instead */
 .step-year {
   display: flex;
   font-family: var(--font-display);
@@ -737,34 +738,54 @@ body { font-size: var(--fs-lead); }
   }
   .hero-scroll { display: none; }
 
-  /* No WebGL on phones (see main.js). Two gradient layers drifting at different
-     speeds and directions stand in for the blob and the footer's point field. */
-  .hero-gl, .footer-gl { animation: gl-drift-a 17s var(--ease-in-out) infinite alternate; }
-  .hero-gl::before, .footer-gl::before {
+  /* A drifting glow sits *under* the orb canvas: ambient movement behind it, and the
+     only thing left if WebGL is unavailable. The footer's point field is still
+     three.js and desktop-only, so there the glow is the whole effect. */
+  .hero-gl::before, .about-gl::before, .footer-gl::before {
     content: '';
     position: absolute;
     inset: -12%;
     animation: gl-drift-b 23s var(--ease-in-out) infinite alternate;
   }
+  /* bottom-anchored: the orb reads as a halo behind the portrait, as it does on
+     desktop, rather than centring in the hero and sitting behind the text */
   .hero-gl {
-    background:
-      radial-gradient(44% 28% at 50% 58%, rgba(255, 107, 44, 0.5), rgba(255, 107, 44, 0) 70%),
-      radial-gradient(32% 20% at 38% 68%, rgba(26, 22, 19, 0.28), rgba(26, 22, 19, 0) 70%);
+    top: auto;
+    height: 54%;
+    background: radial-gradient(40% 28% at 50% 52%, rgba(255, 107, 44, 0.34), rgba(255, 107, 44, 0) 70%);
   }
   .hero-gl::before {
     background:
-      radial-gradient(26% 16% at 70% 42%, rgba(255, 107, 44, 0.42), rgba(255, 107, 44, 0) 70%),
-      radial-gradient(20% 14% at 26% 54%, rgba(255, 107, 44, 0.3), rgba(255, 107, 44, 0) 70%);
+      radial-gradient(26% 16% at 68% 44%, rgba(255, 107, 44, 0.32), rgba(255, 107, 44, 0) 70%),
+      radial-gradient(22% 15% at 28% 56%, rgba(26, 22, 19, 0.2), rgba(26, 22, 19, 0) 70%);
   }
-  /* The footer is dark, so it gets the warm layers only */
+  .about-gl::before {
+    background: radial-gradient(34% 26% at 50% 48%, rgba(255, 107, 44, 0.3), rgba(255, 107, 44, 0) 70%);
+  }
   .footer-gl {
     background: radial-gradient(52% 34% at 50% 100%, rgba(255, 107, 44, 0.34), rgba(255, 107, 44, 0) 72%);
+    animation: gl-drift-a 17s var(--ease-in-out) infinite alternate;
   }
   .footer-gl::before {
     background:
       radial-gradient(28% 20% at 22% 82%, rgba(255, 107, 44, 0.26), rgba(255, 107, 44, 0) 70%),
       radial-gradient(24% 18% at 78% 74%, rgba(255, 107, 44, 0.22), rgba(255, 107, 44, 0) 70%);
   }
+
+  /* The orb needs room to read as an orb */
+  .about-gl { height: 32vh; }
+  .step-img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    margin-top: 6px;
+    border-radius: var(--r);
+    object-fit: cover;
+    opacity: 0.5;
+    filter: grayscale(1);
+    transition: opacity 0.6s var(--ease-out), filter 0.6s var(--ease-out);
+  }
+  .step.is-on .step-img { opacity: 1; filter: none; }
 
   .about-grid { grid-template-columns: 1fr; }
   .about-head { position: static; margin-bottom: 40px; }
@@ -774,7 +795,6 @@ body { font-size: var(--fs-lead); }
   .faq-layout { grid-template-columns: 1fr; }
   .faq-side { position: static; }
   .faq-mark { display: none; }
-  .about-gl { height: 22vh; } /* no 3D path on mobile, just the chapter counter */
   .process-pin { min-height: 0; }
   .process-head { flex-direction: column; align-items: flex-start; }
   .process-count { display: none; }
