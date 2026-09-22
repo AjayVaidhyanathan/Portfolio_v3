@@ -202,9 +202,14 @@ body { font-size: var(--fs-lead); }
   animation: scroll-hint 1.8s var(--ease-in-out) infinite;
 }
 @keyframes scroll-hint { from { transform: translateY(-100%); } to { transform: translateY(100%); } }
-@keyframes hero-drift {
-  from { transform: translate3d(-4%, 2%, 0) scale(1); }
-  to { transform: translate3d(4%, -3%, 0) scale(1.12); }
+/* Transform-only so the whole thing stays on the compositor */
+@keyframes gl-drift-a {
+  from { transform: translate3d(-6%, 3%, 0) scale(1); }
+  to { transform: translate3d(6%, -4%, 0) scale(1.16); }
+}
+@keyframes gl-drift-b {
+  from { transform: translate3d(7%, -3%, 0) scale(1.1); }
+  to { transform: translate3d(-7%, 5%, 0) scale(0.9); }
 }
 
 .hero-gl, .footer-gl { position: absolute; inset: 0; pointer-events: none; }
@@ -697,35 +702,68 @@ body { font-size: var(--fs-lead); }
   .nav.is-dark .nav-links { background: var(--bg); color: var(--ink); } /* the sheet is its own surface */
   .nav-pill { display: none; }
 
-  /* The hero flows as a column and grows past the fold if it has to; the portrait
-     and wordmark stay absolute as the layer behind it. */
-  .hero { height: auto; min-height: 100svh; }
+  /* Everything fits one screen: the text takes what it needs and the portrait, as a
+     flex item with min-height: 0, absorbs whatever is left. No scrolling to see the hero. */
+  .hero { height: 100svh; }
   .hero-inner {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    height: auto;
-    min-height: 100svh;
-    padding: 88px var(--g) min(42vh, 320px);
+    height: 100%;
+    padding: 68px var(--g) 0;
   }
   /* relative, not static: the flowed text still has to out-stack the positioned
-     .hero-gl and .hero-portrait behind it. top/right reset so the desktop offsets don't apply. */
-  .hero-title { position: relative; top: auto; font-size: 12vw; }
-  .hero-aside { position: relative; top: auto; right: auto; width: auto; max-width: 32ch; margin-top: 18px; }
-  .hero-lead { margin-bottom: 18px; }
+     .hero-gl behind it. top/right reset so the desktop offsets don't apply. */
+  .hero-title { position: relative; top: auto; font-size: 11vw; }
+  .hero-aside { position: relative; top: auto; right: auto; width: auto; max-width: none; margin-top: 14px; } /* full width: fewer wrapped lines leaves more room for the portrait */
+  .hero-lead { margin-bottom: 14px; font-size: 14px; }
   .hero-buttons .btn { padding: 13px 22px; } /* 46px tall: comfortable as a thumb target */
-  .hero-stats { position: relative; z-index: 4; display: flex; gap: 10px; margin-top: 22px; }
-  .hero-stat { position: static; padding: 10px 14px; }
-  .hero-stat strong { font-size: 26px; }
-  .hero-portrait { height: min(40vh, 300px); }
+  .hero-stats { position: relative; z-index: 4; display: flex; gap: 8px; margin-top: 16px; }
+  .hero-stat { position: static; padding: 8px 12px; }
+  .hero-stat strong { font-size: 24px; }
+  .hero-portrait {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    translate: none;
+    align-self: center;
+    flex: 1;
+    min-height: 0; /* without this a flex item refuses to shrink below its content */
+    height: auto;
+    width: 100%; /* 3:4 portrait; contain + bottom keeps it anchored however much space is left */
+    max-width: 100%;
+    object-fit: contain;
+    object-position: bottom center;
+  }
   .hero-scroll { display: none; }
 
-  /* No WebGL on phones (see main.js): a drifting gradient stands in for the blob */
+  /* No WebGL on phones (see main.js). Two gradient layers drifting at different
+     speeds and directions stand in for the blob and the footer's point field. */
+  .hero-gl, .footer-gl { animation: gl-drift-a 17s var(--ease-in-out) infinite alternate; }
+  .hero-gl::before, .footer-gl::before {
+    content: '';
+    position: absolute;
+    inset: -12%;
+    animation: gl-drift-b 23s var(--ease-in-out) infinite alternate;
+  }
   .hero-gl {
     background:
-      radial-gradient(42% 26% at 50% 62%, rgba(255, 107, 44, 0.45), rgba(255, 107, 44, 0) 70%),
-      radial-gradient(34% 20% at 44% 70%, rgba(26, 22, 19, 0.3), rgba(26, 22, 19, 0) 70%);
-    animation: hero-drift 16s var(--ease-in-out) infinite alternate;
+      radial-gradient(44% 28% at 50% 58%, rgba(255, 107, 44, 0.5), rgba(255, 107, 44, 0) 70%),
+      radial-gradient(32% 20% at 38% 68%, rgba(26, 22, 19, 0.28), rgba(26, 22, 19, 0) 70%);
+  }
+  .hero-gl::before {
+    background:
+      radial-gradient(26% 16% at 70% 42%, rgba(255, 107, 44, 0.42), rgba(255, 107, 44, 0) 70%),
+      radial-gradient(20% 14% at 26% 54%, rgba(255, 107, 44, 0.3), rgba(255, 107, 44, 0) 70%);
+  }
+  /* The footer is dark, so it gets the warm layers only */
+  .footer-gl {
+    background: radial-gradient(52% 34% at 50% 100%, rgba(255, 107, 44, 0.34), rgba(255, 107, 44, 0) 72%);
+  }
+  .footer-gl::before {
+    background:
+      radial-gradient(28% 20% at 22% 82%, rgba(255, 107, 44, 0.26), rgba(255, 107, 44, 0) 70%),
+      radial-gradient(24% 18% at 78% 74%, rgba(255, 107, 44, 0.22), rgba(255, 107, 44, 0) 70%);
   }
 
   .about-grid { grid-template-columns: 1fr; }
