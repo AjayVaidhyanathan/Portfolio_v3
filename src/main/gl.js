@@ -1,10 +1,14 @@
 import { WebGLRenderer, Scene, PerspectiveCamera, Timer } from 'three';
 
+// Phones have a fraction of the GPU memory and get their tab killed (and silently reloaded)
+// when several contexts are alive at once, so every scene is cheaper here.
+export const mobile = !matchMedia('(min-width: 768px)').matches;
+
 /* Shared WebGL plumbing: a renderer sized to its container that only renders while visible. */
 export function createStage(container, { fov = 35, z = 6 } = {}) {
   // Retina screens don't need MSAA, and 1.5x is visually identical for soft shapes at far lower fill cost
   const renderer = new WebGLRenderer({ antialias: window.devicePixelRatio < 2, alpha: true, powerPreference: 'high-performance' });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, mobile ? 1 : 1.5));
   container.append(renderer.domElement);
 
   const scene = new Scene();

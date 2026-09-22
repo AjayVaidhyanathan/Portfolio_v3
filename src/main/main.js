@@ -21,6 +21,7 @@ const heroGL = { reveal: 0, y: 0, scale: 1, spin: 0 };
 const footerGL = { rise: 0 };
 // Start downloading the hero scene right away, in parallel with the fonts
 const heroScene = motion ? import('./three-hero.js') : null;
+const extraScenes = motion && isDesktop(); // one WebGL context is all a phone can hold
 
 async function boot() {
   await Promise.all([
@@ -200,7 +201,7 @@ function initGL() {
       ScrollTrigger.create({ trigger: '.about', start: 'top top', onEnter: (self) => { dispose(); self.kill(); } });
     })
     .catch(fail);
-  whenNear($('.footer'), () => import('./three-footer.js').then((m) => m.initFooterGL($('.footer-gl'), footerGL)).catch(fail));
+  if (extraScenes) whenNear($('.footer'), () => import('./three-footer.js').then((m) => m.initFooterGL($('.footer-gl'), footerGL)).catch(fail));
 }
 
 /* ---------- Headings: characters rise and untwist, line by line ---------- */

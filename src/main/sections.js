@@ -1,4 +1,4 @@
-import { gsap, ScrollTrigger, $, $$ } from '../shared/core.js';
+import { gsap, ScrollTrigger, $, $$, isDesktop } from '../shared/core.js';
 
 const finePointer = () => matchMedia('(pointer: fine)').matches;
 
@@ -24,7 +24,7 @@ export function initAbout() {
     end: 'bottom 60%',
     onUpdate: (self) => (gl.progress = self.progress),
   });
-  whenNear($('.about'), () =>
+  if (isDesktop()) whenNear($('.about'), () =>
     import('./three-journey.js')
       .then((m) => m.initJourneyGL($('.about-gl'), steps.length, gl))
       .catch((err) => console.warn('WebGL disabled:', err))

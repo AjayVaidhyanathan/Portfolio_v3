@@ -658,7 +658,7 @@ body { font-size: var(--fs-lead); }
   .faq-layout { grid-template-columns: 1fr; }
   .faq-side { position: static; }
   .faq-mark { display: none; }
-  .about-gl { height: 44vh; }
+  .about-gl { height: 22vh; } /* no 3D path on mobile, just the chapter counter */
   .process-pin { min-height: 0; }
   .process-head { flex-direction: column; align-items: flex-start; }
   .process-count { display: none; }
