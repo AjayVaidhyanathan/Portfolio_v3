@@ -1,5 +1,5 @@
 import { Color, ShaderMaterial, Mesh, IcosahedronGeometry, Group, MeshBasicMaterial, SphereGeometry } from 'three';
-import { createStage, disposeStage, NOISE, pointer, easePointer, mobile } from './gl.js';
+import { createStage, disposeStage, NOISE, pointer, easePointer } from './gl.js';
 
 /* Hero: a slow-morphing ink blob with a yellow rim, sitting behind the portrait like a halo.
    It leans toward the cursor, gets agitated by fast mouse moves and is exposed as `state`
@@ -56,7 +56,7 @@ export function initHeroGL(container, state) {
     `,
   });
 
-  const blob = new Mesh(new IcosahedronGeometry(1.15, mobile ? 10 : 28), material);
+  const blob = new Mesh(new IcosahedronGeometry(1.15, 28), material);
   scene.add(blob);
 
   // Tiny orbiting satellites add depth without competing with the portrait

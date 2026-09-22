@@ -1,4 +1,3 @@
-import '@fontsource-variable/schibsted-grotesk';
 import '../shared/base.css';
 import '../shared/work.css';
 import '../shared/capabilities.css';
@@ -19,16 +18,21 @@ const finePointer = matchMedia('(pointer: fine)').matches;
 // Plain objects GSAP animates; the WebGL scenes read them once their chunk has loaded
 const heroGL = { reveal: 0, y: 0, scale: 1, spin: 0 };
 const footerGL = { rise: 0 };
-// Start downloading the hero scene right away, in parallel with the fonts
-const heroScene = motion ? import('./three-hero.js') : null;
-const extraScenes = motion && isDesktop(); // one WebGL context is all a phone can hold
+// three.js is 136KB gzip of decoration, so phones get a CSS gradient instead (see .hero-gl).
+// Start downloading the hero scene right away, in parallel with the fonts.
+const webgl = motion && isDesktop();
+const heroScene = webgl ? import('./three-hero.js') : null;
 
 async function boot() {
-  await Promise.all([
-    document.fonts.load('900 100px "Schibsted Grotesk Variable"'),
-    document.fonts.load('450 16px "General Sans"'),
+  // Both fonts are preloaded from the HTML, but a slow connection shouldn't hold the
+  // page at a blank screen: font-display: swap covers a late arrival.
+  await Promise.race([
+    Promise.all([
+      document.fonts.load('900 100px "Schibsted Grotesk Variable"'),
+      document.fonts.load('450 16px "General Sans"'),
+    ]).then(() => document.fonts.ready),
+    new Promise((r) => setTimeout(r, 1200)),
   ]);
-  await document.fonts.ready;
   window.scrollTo(0, 0);
 
   const year = $('[data-year]');
@@ -40,6 +44,7 @@ async function boot() {
 
   initScroll();
   initNav();
+  initMobileNav();
   initReveals();
   initFaq();
   initRail();
@@ -71,7 +76,7 @@ async function boot() {
   ScrollTrigger.refresh();
   if (motion) {
     playIntro();
-    initGL();
+    if (webgl) initGL();
   } else document.documentElement.classList.remove('is-loading');
 
   reloadOnResize();
@@ -98,7 +103,7 @@ function playIntro() {
     .to('.hero-letter', { yPercent: 0, duration: 1.3, stagger: 0.07 }, 0)
     .to('.hero-portrait', { yPercent: 0, autoAlpha: 1, duration: 1.4 }, 0.25)
     .to(titleLines, { yPercent: 0, duration: 1.1, stagger: 0.08 }, 0.45)
-    .to('.nav', { yPercent: 0, duration: 1 }, 0.6)
+    .to('.nav', { yPercent: 0, duration: 1, clearProps: 'transform' }, 0.6) // a leftover transform would make the fixed mobile sheet position against the bar
     .to(leadLines, { yPercent: 0, duration: 1, stagger: 0.05 }, 0.7)
     .to(['.hero-buttons .btn', '.hero-stat', '.hero-scroll'], { autoAlpha: 1, y: 0, duration: 1, stagger: 0.06 }, 0.8);
 }
@@ -110,12 +115,12 @@ function initNav() {
   const pill = $('.nav-pill');
   let active = null;
 
-  const moveTo = (a) => {
+  const moveTo = !finePointer ? () => {} : (a) => {
     if (!a) return gsap.to(pill, { autoAlpha: 0, duration: 0.3 });
     gsap.to(pill, { x: a.offsetLeft, width: a.offsetWidth, autoAlpha: 1, duration: 0.5, ease: 'expo.out' });
   };
   links.forEach((a) => {
-    a.addEventListener('mouseenter', () => moveTo(a));
+    if (finePointer) a.addEventListener('mouseenter', () => moveTo(a));
     ScrollTrigger.create({
       trigger: a.getAttribute('href'),
       start: 'top 50%',
@@ -128,18 +133,38 @@ function initNav() {
       },
     });
   });
-  $('.nav-links').addEventListener('mouseleave', () => moveTo(active));
+  if (finePointer) $('.nav-links').addEventListener('mouseleave', () => moveTo(active));
 
   ScrollTrigger.create({
     start: 200,
     end: 'max',
-    onUpdate: (self) => nav.classList.toggle('is-hidden', self.direction === 1),
+    onUpdate: (self) => nav.classList.toggle('is-hidden', self.direction === 1 && !nav.classList.contains('is-open')),
     onLeaveBack: () => nav.classList.remove('is-hidden'),
   });
   // Dark sections flip the nav's glass to dark
   $$('.work, .process, .footer').forEach((section) =>
     ScrollTrigger.create({ trigger: section, start: 'top 40px', end: 'bottom 40px', toggleClass: { targets: nav, className: 'is-dark' } })
   );
+}
+
+/* ---------- Mobile menu: the nav links become a full-screen sheet ---------- */
+function initMobileNav() {
+  const nav = $('.nav');
+  const toggle = $('.nav-toggle');
+
+  const set = (open) => {
+    nav.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', open);
+    // lenis owns the lock when it's running; the class covers reduced-motion, where it isn't
+    document.documentElement.classList.toggle('is-menu-open', open);
+    if (open) core.lenis?.stop();
+    else core.lenis?.start();
+  };
+
+  toggle.addEventListener('click', () => set(!nav.classList.contains('is-open')));
+  // initScroll() already handles the smooth jump; this just gets the sheet out of the way
+  $$('.nav-links a').forEach((a) => a.addEventListener('click', () => set(false)));
+  document.addEventListener('keydown', (e) => e.key === 'Escape' && nav.classList.contains('is-open') && set(false));
 }
 
 /* ---------- Hero: letters drift at different speeds, content lifts while the band and work section cover it ---------- */
@@ -149,7 +174,7 @@ function initHeroScroll() {
   gsap.to('.hero-portrait', { yPercent: 10, scale: 0.94, ease: 'none', scrollTrigger: st });
   gsap.to(['.hero-title', '.hero-aside', '.hero-stat'], { y: -120, autoAlpha: 0, ease: 'none', scrollTrigger: { ...st, end: '60% top' } });
   gsap.to(heroGL, { y: -1.4, scale: 0.6, spin: 3, ease: 'none', scrollTrigger: st });
-  gsap.to('.hero-inner', { yPercent: 45, scale: 0.96, ease: 'none', scrollTrigger: st }); // parallax: the dark curtain overtakes it
+  gsap.to('.hero-inner', { yPercent: isDesktop() ? 45 : 18, scale: 0.96, ease: 'none', scrollTrigger: st }); // parallax: the dark curtain overtakes it
 }
 
 /* ---------- Tools band: moves with scroll ---------- */
@@ -201,19 +226,20 @@ function initGL() {
       ScrollTrigger.create({ trigger: '.about', start: 'top top', onEnter: (self) => { dispose(); self.kill(); } });
     })
     .catch(fail);
-  if (extraScenes) whenNear($('.footer'), () => import('./three-footer.js').then((m) => m.initFooterGL($('.footer-gl'), footerGL)).catch(fail));
+  whenNear($('.footer'), () => import('./three-footer.js').then((m) => m.initFooterGL($('.footer-gl'), footerGL)).catch(fail));
 }
 
 /* ---------- Headings: characters rise and untwist, line by line ---------- */
 function initChars() {
+  const perChar = isDesktop(); // a few hundred char spans per heading is too much DOM for a phone
   $$('[data-reveal="chars"]').forEach((el) => {
-    const split = SplitText.create(el, { type: 'lines,words,chars', mask: 'lines', linesClass: 'line' });
-    gsap.from(split.chars, {
+    const split = SplitText.create(el, { type: perChar ? 'lines,words,chars' : 'lines', mask: 'lines', linesClass: 'line' });
+    gsap.from(perChar ? split.chars : split.lines, {
       yPercent: 110,
-      rotate: 12,
+      rotate: perChar ? 12 : 0,
       transformOrigin: '0% 100%',
       duration: 1,
-      stagger: 0.018,
+      stagger: perChar ? 0.018 : 0.08,
       ease: 'expo.out',
       scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none reverse' },
     });
@@ -259,6 +285,7 @@ function initTilt() {
 
 /* ---------- Band skews with scroll speed ---------- */
 function initBandVelocity() {
+  if (!isDesktop()) return; // repainting a full-width row every frame from scroll velocity
   const skew = gsap.quickTo('.band-row', 'skewX', { duration: 0.5, ease: 'power3.out' });
   ScrollTrigger.create({
     trigger: '.band',
@@ -284,8 +311,9 @@ function initEntrances() {
   batch('.quote', { x: 120, autoAlpha: 0 });
   gsap.set('.faq', { y: 40, autoAlpha: 0 });
   batch('.faq', { y: 40, autoAlpha: 0 });
-  // Hero stats bob gently once the intro is done
-  $$('.hero-stat').forEach((el, i) =>
+  // Hero stats bob gently once the intro is done — only while they float free of the
+  // layout; on mobile they sit in a row under the buttons and would drag it around
+  if (isDesktop()) $$('.hero-stat').forEach((el, i) =>
     gsap.to(el, { yPercent: -18, duration: 2.4 + i * 0.5, delay: 2, ease: 'sine.inOut', yoyo: true, repeat: -1 })
   );
 }

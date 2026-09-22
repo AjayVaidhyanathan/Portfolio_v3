@@ -32,6 +32,8 @@
 .faq.is-open .faq-body { grid-template-rows: 1fr; }
 
 @media (max-width: 767px) {
+  /* solid, not a blur: a backdrop-filter per card is a real cost on a phone */
+  .faq { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(232, 223, 210, 0.92); }
   .faq summary { padding: 16px; gap: 12px; }
   .faq-plus { width: 13px; height: 13px; }
   .faq-body p { padding: 0 16px 16px; }

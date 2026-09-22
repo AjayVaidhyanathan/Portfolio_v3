@@ -52,6 +52,23 @@ body { font-size: var(--fs-lead); }
   background: var(--yellow);
   font-size: 22px;
 }
+.nav-toggle {
+  display: none; /* mobile only, see the media query */
+  order: 3;
+  place-content: center;
+  gap: 5px;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: rgba(240, 235, 227, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+.nav-toggle i { display: block; width: 18px; height: 2px; background: var(--ink); transition: transform 0.35s var(--ease-out); }
+.nav.is-open .nav-toggle i:first-child { transform: translateY(3.5px) rotate(45deg); }
+.nav.is-open .nav-toggle i:last-child { transform: translateY(-3.5px) rotate(-45deg); }
+.nav.is-dark .nav-toggle { background: rgba(29, 29, 29, 0.85); border-color: rgba(255, 255, 255, 0.12); }
+.nav.is-dark .nav-toggle i { background: var(--paper); }
+
 .nav-links {
   position: relative;
   display: flex;
@@ -142,6 +159,7 @@ body { font-size: var(--fs-lead); }
 .hero-lead { margin-bottom: 20px; }
 .hero-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
 
+.hero-stats { display: contents; } /* mobile turns this into a real row; desktop keeps each stat absolute */
 .hero-stat {
   position: absolute;
   z-index: 4;
@@ -184,6 +202,10 @@ body { font-size: var(--fs-lead); }
   animation: scroll-hint 1.8s var(--ease-in-out) infinite;
 }
 @keyframes scroll-hint { from { transform: translateY(-100%); } to { transform: translateY(100%); } }
+@keyframes hero-drift {
+  from { transform: translate3d(-4%, 2%, 0) scale(1); }
+  to { transform: translate3d(4%, -3%, 0) scale(1.12); }
+}
 
 .hero-gl, .footer-gl { position: absolute; inset: 0; pointer-events: none; }
 .hero-gl { z-index: 2; }
@@ -640,15 +662,71 @@ body { font-size: var(--fs-lead); }
 
 /* ============ MOBILE ============ */
 @media (max-width: 767px) {
-  .nav-links { display: none; }
-  .nav-brand { font-size: 18px; }
+  .nav-brand { margin-right: auto; font-size: 18px; }
+  .nav-cta { order: 2; }
+  .nav-toggle { display: grid; }
+  .nav.is-open { translate: none; } /* the scroll-hide must not move the sheet with it */
 
-  .hero-title { top: 90px; font-size: 13vw; }
-  .hero-aside { display: none; }
-  .hero-portrait { height: 62%; }
-  .hero-stat--1 { left: auto; right: var(--g); top: 44vh; }
-  .hero-stat--2 { left: var(--g); top: 56vh; }
+  /* z-index: -1 keeps the sheet inside the nav's stacking context but behind the
+     brand, CTA and toggle, so they stay tappable while it's open. */
+  .nav-links {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    padding: 0 var(--g);
+    border: 0;
+    border-radius: 0;
+    background: var(--bg);
+    -webkit-backdrop-filter: none; /* a full-screen blur is a needless repaint on a phone */
+    backdrop-filter: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.35s var(--ease-out), visibility 0.35s;
+  }
+  .nav.is-open .nav-links { visibility: visible; opacity: 1; }
+  .nav-links a {
+    padding: 14px 2px;
+    font-size: clamp(30px, 9vw, 44px);
+    text-transform: none;
+    letter-spacing: -0.035em;
+  }
+  .nav-links a.is-active { color: var(--yellow); }
+  .nav.is-dark .nav-links { background: var(--bg); color: var(--ink); } /* the sheet is its own surface */
+  .nav-pill { display: none; }
+
+  /* The hero flows as a column and grows past the fold if it has to; the portrait
+     and wordmark stay absolute as the layer behind it. */
+  .hero { height: auto; min-height: 100svh; }
+  .hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    min-height: 100svh;
+    padding: 88px var(--g) min(42vh, 320px);
+  }
+  /* relative, not static: the flowed text still has to out-stack the positioned
+     .hero-gl and .hero-portrait behind it. top/right reset so the desktop offsets don't apply. */
+  .hero-title { position: relative; top: auto; font-size: 12vw; }
+  .hero-aside { position: relative; top: auto; right: auto; width: auto; max-width: 32ch; margin-top: 18px; }
+  .hero-lead { margin-bottom: 18px; }
+  .hero-buttons .btn { padding: 13px 22px; } /* 46px tall: comfortable as a thumb target */
+  .hero-stats { position: relative; z-index: 4; display: flex; gap: 10px; margin-top: 22px; }
+  .hero-stat { position: static; padding: 10px 14px; }
+  .hero-stat strong { font-size: 26px; }
+  .hero-portrait { height: min(40vh, 300px); }
   .hero-scroll { display: none; }
+
+  /* No WebGL on phones (see main.js): a drifting gradient stands in for the blob */
+  .hero-gl {
+    background:
+      radial-gradient(42% 26% at 50% 62%, rgba(255, 107, 44, 0.45), rgba(255, 107, 44, 0) 70%),
+      radial-gradient(34% 20% at 44% 70%, rgba(26, 22, 19, 0.3), rgba(26, 22, 19, 0) 70%);
+    animation: hero-drift 16s var(--ease-in-out) infinite alternate;
+  }
 
   .about-grid { grid-template-columns: 1fr; }
   .about-head { position: static; margin-bottom: 40px; }

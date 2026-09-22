@@ -1,4 +1,3 @@
-import '@fontsource-variable/schibsted-grotesk';
 import '../shared/base.css';
 import './sidebar.css';
 import './hero.css';

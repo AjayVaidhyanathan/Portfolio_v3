@@ -1,4 +1,11 @@
 @font-face {
+  font-family: 'Schibsted Grotesk Variable';
+  src: url('/fonts/SchibstedGrotesk-Variable.woff2') format('woff2-variations');
+  font-weight: 400 900;
+  font-display: swap;
+}
+
+@font-face {
   font-family: 'General Sans';
   src: url('/fonts/GeneralSans-Variable.woff2') format('woff2');
   font-weight: 200 700;
@@ -44,7 +51,7 @@
 html { background: var(--bg); overscroll-behavior-y: contain; }
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
-.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-stopped, html.is-menu-open { overflow: hidden; }
 
 body {
   margin: 0;
